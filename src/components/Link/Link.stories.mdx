@@ -1,0 +1,64 @@
+import {
+    Canvas,
+    Meta,
+    Story
+} from '@storybook/addon-docs';
+
+import Link from './Link';
+
+<Meta
+    component={Link}
+    title='Components/Link'
+/>
+
+# Link
+
+## Props
+
+The Button's props extend `React.HTMLAttributes<HTMLAnchorElement>`. This keeps the button's 
+props as close to the JSX specification as possible.
+
+**Props Details**
+
+| Name       | Default Value | Possible Values                      | Description                                                  |
+|------------|---------------|--------------------------------------|--------------------------------------------------------------|
+| className  |               |                                      | Appends a class to the button element.                       |
+| id         |               |                                      | Sets the id on the button element.                           |
+| href       |               |                                      | Sets the destination of the link.                            |
+
+## Render Props
+
+Render props are used to change how a component is rendered. Our render props are added to 
+a component's className to give developers a way to control how their component works.
+
+**Render Props Details**
+
+| Name       | Default Value | Possible Values                      | Description                                                  |
+|------------|---------------|--------------------------------------|--------------------------------------------------------------|
+| variant    | 'link'        | 'link', 'button'                     | Controls the visual representation of the link.              |
+
+## Example
+
+<>
+    <Link href='https://www.google.com'>
+        Link
+    </Link>
+    <Link href='https://www.google.com' variant='button'>
+        Button Link
+    </Link>
+</>
+
+```jsx
+import { Link } from '@nightowl-developers/styless-react';
+
+const MyComponent = () => {
+    return <>
+        <Link href='https://www.google.com'>
+            Link
+        </Link>
+        <Link href='https://www.google.com' variant='button'>
+            Button Link
+        </Link>
+    </>;
+}
+```

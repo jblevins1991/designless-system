@@ -9,7 +9,7 @@ export interface TypographyProps extends React.HTMLAttributes<TypographyElements
 const Typography: React.FC<TypographyProps> = ({
     children,
     className,
-    variant,
+    variant = 'p',
     ...props
 }) => {
     return React.createElement(variant, {

@@ -2,13 +2,14 @@ import * as React from 'react';
 import classNames from 'classnames';
 
 import {
-    getDocumentFromRef, getWindow
+    getWindow
 } from '../../hooks';
 
 export interface CodeProps {
     children?: string;
     className?: string;
     copyIcon: React.ReactNode;
+    id: string;
     language?: string;
 }
 
@@ -16,6 +17,7 @@ const Code: React.FC<CodeProps> = ({
     children,
     className,
     copyIcon,
+    id,
     language
 }) => {
     const codeRef = React.useRef(null);
@@ -34,9 +36,11 @@ const Code: React.FC<CodeProps> = ({
                 className
             )
         }
+        id={`${id}-code-root`}
     >
         <div
             className='code-header'
+            id={`${id}-code-header`}
         >
             <span>
                 {language}
@@ -48,7 +52,11 @@ const Code: React.FC<CodeProps> = ({
                 {copyIcon}
             </button>
         </div>
-        <code ref={codeRef}>
+        <code
+            className='code-content'
+            id={`${id}-code-content`}
+            ref={codeRef}
+        >
             {children}
         </code>
     </div>

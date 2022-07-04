@@ -1,0 +1,48 @@
+import {
+    Canvas,
+    Meta,
+    Story
+} from '@storybook/addon-docs';
+
+import Image from './Image';
+
+<Meta
+    component={Image}
+    title='Components/Image'
+/>
+
+# Image
+
+## Props
+
+The Button's props extend `React.HTMLAttributes<HTMLImageElement>`. This keeps the button's 
+props as close to the JSX specification as possible.
+
+**Props Details**
+
+| Name       | Default Value | Possible Values                      | Description                                                  |
+|------------|---------------|--------------------------------------|--------------------------------------------------------------|
+| alt        |               |                                      | The descriptive text for the image.                          |
+| className  |               |                                      | Appends a class to the button element.                       |
+| id         |               |                                      | Sets the id on the button element.                           |
+| src        |               |                                      | The URL of the image you want to display.                    |
+
+## Example
+
+<>
+    <Image
+        alt='A picture of puppies.'
+        src=''
+    />
+</>
+
+```jsx
+import { Image } from '@nightowl-developers/styless-react';
+
+const MyComponent = () => {
+    return <Image
+        alt='A picture of puppies.'
+        src=''
+    />;
+}
+```

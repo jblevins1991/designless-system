@@ -30,6 +30,7 @@ export interface ButtonProps extends Omit<React.HTMLAttributes<HTMLButtonElement
      * Default value: 'medium'
      */
     size?: size;
+    type?: 'button' | 'submit' | 'reset';
     /**
      * Controls the style of the button.
      * 

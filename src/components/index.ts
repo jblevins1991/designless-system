@@ -9,6 +9,11 @@ export {
 } from './Code/Code';
 
 export {
+    default as IconButton,
+    IconButtonProps
+} from './IconButton/IconButton';
+
+export {
     default as Image,
     ImageProps
 } from './Image/Image';

@@ -1,6 +1,10 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
+import {
+    getDocumentFromRef, getWindow
+} from '../../hooks';
+
 export interface CodeProps {
     children?: string;
     className?: string;
@@ -14,12 +18,13 @@ const Code: React.FC<CodeProps> = ({
     copyIcon,
     language
 }) => {
-    const codeRef = React.useRef<HTMLButtonElement>(null);
+    const codeRef = React.useRef(null);
+    const window = getWindow();
 
     const handleCopyClick = () => {
-        const code = codeRef.current?.innerText;
-
-        // copy to clipboard
+        const code = codeRef.current.innerHTML;
+        
+        window.navigator.clipboard.writeText(code);
     };
 
     return <div

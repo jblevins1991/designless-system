@@ -4,6 +4,11 @@ export {
 } from './Button/Button';
 
 export {
+    default as Card,
+    CardProps
+} from './Card/Card';
+
+export {
     default as Code,
     CodeProps
 } from './Code/Code';

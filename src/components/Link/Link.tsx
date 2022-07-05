@@ -1,6 +1,12 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
+import {
+    useCreateBlurHandler,
+    useCreateClickHandler,
+    useCreateFocusHandler
+} from '../../hooks';
+
 export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
     /**
      * 
@@ -16,6 +22,9 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(({
     children,
     className,
     href,
+    onBlur,
+    onClick,
+    onFocus,
     variant = 'link',
     ...props
 }, ref) => {
@@ -27,6 +36,18 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(({
         }
     }
 
+    const handleBlur = useCreateBlurHandler((event: React.FocusEvent<HTMLAnchorElement>) => {
+        onBlur?.(event);
+    }, false);
+    
+    const handleClick = useCreateClickHandler((event: React.MouseEvent<HTMLAnchorElement>) => {
+        onClick?.(event);
+    }, false);
+    
+    const handleFocus = useCreateFocusHandler((event: React.FocusEvent<HTMLAnchorElement>) => {
+        onFocus?.(event);
+    }, false);
+
     return <a
         {...props}
         className={
@@ -37,6 +58,9 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(({
             )
         }
         href={href}
+        onBlur={handleBlur}
+        onClick={handleClick}
+        onFocus={handleFocus}
         ref={ref}
     >
         {children}

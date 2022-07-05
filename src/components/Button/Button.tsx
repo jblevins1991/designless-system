@@ -1,6 +1,11 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
+import {
+    useCreateBlurHandler,
+    useCreateClickHandler,
+    useCreateFocusHandler
+} from '../../hooks';
 import { color, size } from '../../types/commonProps';
 
 type ButtonOmitProps = 'size';
@@ -45,10 +50,25 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     color = 'primary',
     disabled = false,
     fullWidth = false,
+    onBlur,
+    onClick,
+    onFocus,
     size = 'medium',
     variant = 'filled',
     ...props
 }, ref) => {
+    const handleBlur = useCreateBlurHandler((event: React.FocusEvent<HTMLButtonElement>) => {
+        onBlur?.(event);
+    }, disabled);
+    
+    const handleClick = useCreateClickHandler((event: React.MouseEvent<HTMLButtonElement>) => {
+        onClick?.(event);
+    }, disabled);
+    
+    const handleFocus = useCreateFocusHandler((event: React.FocusEvent<HTMLButtonElement>) => {
+        onFocus?.(event);
+    }, disabled);
+
     return <button
         {...props}
         className={classNames(
@@ -59,6 +79,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
             variant,
             className
         )}
+        onBlur={handleBlur}
+        onClick={handleClick}
+        onFocus={handleFocus}
         disabled={disabled}
         ref={ref}
     >

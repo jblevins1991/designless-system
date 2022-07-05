@@ -1,6 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UnorderedListProps extends React.HTMLAttributes<HTMLUListElement> {}
 
 const UnorderedList: React.FC<UnorderedListProps> = ({

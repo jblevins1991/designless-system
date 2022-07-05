@@ -1,6 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ListItemProps extends React.HTMLAttributes<HTMLLIElement> {}
 
 const ListItem: React.FC<ListItemProps> = ({

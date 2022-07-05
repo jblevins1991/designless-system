@@ -4,7 +4,10 @@ import {
     Story
 } from '@storybook/addon-docs';
 
-import Code from './Code';
+import {
+    Code,
+    Image
+} from '..';
 
 <Meta
     component={Code}
@@ -31,7 +34,7 @@ liberty on the props interface until the next major version.
 ## Example
 
 <Code
-    copyIcon={<img
+    copyIcon={<Image
         alt='Two documents overlapping each other.'
         src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Copy_font_awesome.svg/512px-Copy_font_awesome.svg.png'
     />}
@@ -46,11 +49,11 @@ liberty on the props interface until the next major version.
 </Code>
 
 ```jsx
-import { Code } from '@nightowl-developers/styless-react';
+import { Code, Image } from '@nightowl-developers/styless-react';
 
 const MyComponent = () => {
     return <Code
-        copyIcon={<img
+        copyIcon={<Image
             alt='Two documents overlapping each other.'
             src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Copy_font_awesome.svg/512px-Copy_font_awesome.svg.png'
         />}

@@ -36,7 +36,7 @@ export interface ButtonProps extends Omit<React.HTMLAttributes<HTMLButtonElement
      * 
      * Default value: 'solid'
      */
-    variant?: 'solid' | 'outlined' | 'text';
+    variant?: 'filled' | 'outlined' | 'text';
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
@@ -46,7 +46,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     disabled = false,
     fullWidth = false,
     size = 'medium',
-    variant = 'solid',
+    variant = 'filled',
     ...props
 }, ref) => {
     return <button

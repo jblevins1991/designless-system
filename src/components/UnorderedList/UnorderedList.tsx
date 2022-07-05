@@ -11,7 +11,7 @@ const UnorderedList: React.FC<UnorderedListProps> = ({
     return <ul
         className={
             classNames(
-                'ordered-list',
+                'unordered-list',
                 className
             )
         }

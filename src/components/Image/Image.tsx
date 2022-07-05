@@ -11,7 +11,9 @@ const Image: React.FC<ImageProps> = ({
     className,
     src
 }) => {
-    return <figure>
+    return <figure
+        className='image-wrapper'
+    >
         <img
             alt={alt}
             className={
@@ -23,7 +25,7 @@ const Image: React.FC<ImageProps> = ({
             src={src}
         />
 
-        <figcaption>
+        <figcaption className='image-caption'>
             {alt}
         </figcaption>
     </figure>

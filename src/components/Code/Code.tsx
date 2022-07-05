@@ -47,6 +47,7 @@ const Code: React.FC<CodeProps> = ({
             </span>
 
             <button
+                className='code-copy-button'
                 onClick={handleCopyClick}
             >
                 {copyIcon}

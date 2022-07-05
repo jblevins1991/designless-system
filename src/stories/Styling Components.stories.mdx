@@ -1,0 +1,357 @@
+import {
+    Canvas,
+    Meta,
+    Story
+} from '@storybook/addon-docs';
+
+<Meta
+    title='Getting Started/Styling Components'
+/>
+
+# Styling Components
+
+Styling components is simple due to the lack of styles. This will make your 
+styles intuitive and have intent. By not having to use more complex specificity 
+in your styles, they will be easier to understand and change in meaningful ways.
+
+## Styled-Components
+
+```jsx
+import { Button as SButton } from '@nightowl-developers/styless-react';
+import styled from 'styled-components';
+
+const Button = styled(SButton)`
+  // your styles here
+`;
+
+export default Button;
+```
+
+## TailwindCSS
+
+Styling using TailwindCSS is a bit faster than other options. Below is a 
+boilerplate for all of the components and their states.
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .button {}
+
+    .button.fullWidth {}
+
+    .button.primary {}
+
+    .button.primary:hover {}
+
+    .button.secondary {}
+
+    .button.secondary:hover {}
+
+    .button.tertiary {}
+
+    .button.tertiary:hover {}
+
+    .button.large {}
+
+    .button.medium {}
+
+    .button.small {}
+
+    .button.filled {}
+
+    .button.outlined {}
+
+    .button.text {}
+
+    .button:disabled {}
+
+    .card {}
+
+    .code-root {}
+
+    .code-header {}
+
+    .code-header span {}
+
+    .code-header button.code-copy-button {}
+
+    .code-content {}
+
+    .button.icon-button {}
+
+    .button.icon-button.primary {}
+
+    .button.icon-button.secondary {}
+
+    .button.icon-button.secondary {}
+
+    .image-wrapper {}
+
+    .image-wrapper .image {}
+
+    .image-wrapper .image-caption {}
+
+    .link {}
+
+    .link.link {}
+
+    .link.button {}
+
+    .list-item {}
+
+    .ordered-list {}
+
+    .typography {}
+
+    .typography.h1 {}
+
+    .typography.h2 {}
+
+    .typography.h3 {}
+
+    .typography.h4 {}
+
+    .typography.h5 {}
+
+    .typography.h6 {}
+
+    .typography.p {}
+
+    .unordered-list {}
+}
+```
+
+## CSS/SASS
+
+If you are using CSS, I recommend you grab the classes from 
+the `TailwindCSS` example and paste that into your CSS file.
+
+If you are using SCSS, you can use the boilerplate below as a 
+starting point.
+
+```SCSS
+.button {
+    &.fullWidth {}
+
+    &.primary {
+        &.filled {
+            &:hover {}
+        }
+
+        &.outlined {
+            &:hover {}
+        }
+
+        &.text {
+            &:hover {}
+        }
+    }
+
+    &.secondary {
+        &.filled {
+            &:hover {}
+        }
+
+        &.outlined {
+            &:hover {}
+        }
+
+        &.text {
+            &:hover {}
+        }
+    }
+
+    &.tertiary {
+        &.filled {
+            &:hover {}
+        }
+
+        &.outlined {
+            &:hover {}
+        }
+
+        &.text {
+            &:hover {}
+        }
+    }
+
+    &.large {}
+
+    &.medium {}
+
+    &.small {}
+
+    &:focus {}
+
+    &:disabled {}
+}
+
+.card {}
+
+.code-root {
+    .code-header {
+        & span {}
+
+        & .button.code-copy-button {
+            &.fullWidth {}
+
+            &.primary {
+                &.filled {
+                    &:hover {}
+                }
+
+                &.outlined {
+                    &:hover {}
+                }
+
+                &.text {
+                    &:hover {}
+                }
+            }
+
+            &.secondary {
+                &.filled {
+                    &:hover {}
+                }
+
+                &.outlined {
+                    &:hover {}
+                }
+
+                &.text {
+                    &:hover {}
+                }
+            }
+
+            &.tertiary {
+                &.filled {
+                    &:hover {}
+                }
+
+                &.outlined {
+                    &:hover {}
+                }
+
+                &.text {
+                    &:hover {}
+                }
+            }
+
+            &.large {}
+
+            &.medium {}
+
+            &.small {}
+
+            &:focus {}
+
+            &:disabled {}
+        }
+    }
+
+    .code-content {}
+}
+
+.button.icon-button {
+    &.fullWidth {}
+
+    &.primary {
+        &.filled {
+            &:hover {}
+        }
+
+        &.outlined {
+            &:hover {}
+        }
+
+        &.text {
+            &:hover {}
+        }
+    }
+
+    &.secondary {
+        &.filled {
+            &:hover {}
+        }
+
+        &.outlined {
+            &:hover {}
+        }
+
+        &.text {
+            &:hover {}
+        }
+    }
+
+    &.tertiary {
+        &.filled {
+            &:hover {}
+        }
+
+        &.outlined {
+            &:hover {}
+        }
+
+        &.text {
+            &:hover {}
+        }
+    }
+
+    &.large {}
+
+    &.medium {}
+
+    &.small {}
+
+    &:focus {}
+
+    &:disabled {}
+}
+
+.link {
+    &.link {
+        &:link {}
+
+        &:visited {}
+
+        &:hover {}
+
+        &:active {}
+    }
+
+    &.button {
+        &:link {}
+
+        &:visited {}
+
+        &:hover {}
+
+        &:active {}
+    }
+}
+
+.list-item {}
+
+.ordered-list {}
+
+.typography {
+    &.h1 {}
+
+    &.h2 {}
+
+    &.h3 {}
+
+    &.h4 {}
+
+    &.h5 {}
+
+    &.h6 {}
+
+    &.p {}
+}
+
+.unordered-list {}
+```

@@ -1,7 +1,7 @@
 export {
     default as Breadcrumb,
     BreadcrumbProps
-} from './Breadcrumbs/Breadcrumbs';
+} from './Breadcrumb/Breadcrumb';
 
 export {
     default as Button,

@@ -1,5 +1,27 @@
-# Designless System
+# Styless React
 
-Designless system was built to quickly build web pages that are screen-reader friendly and force implementation of aria authoring best practices when necessary. This includes only using aria when needed, compliance with `name role value` conventions where needed, and sticking to natural HTML attributes for all components.
+Styless is a component library without any styles. This is done intentionally to make building out design systems quick and painless. This repository is licensed under the MIT license so that enterprises can fork this library and make changes to fit their component level designs.
 
-Designless System comes without any styles. This decision was made so I could use all of the components on any of my projects without compromising CSS specificity simplicity. CSS can get really hairy when you have to come up with creative ways to override styles, causing maintenance complexity to suffer. This also provides developers the freedom to pair any styling library or method to fit their needs.
+## Installing Styless
+
+To install styless, you will need to add a `.npmrc` file if you don't already have one. This file is needed as we don't publish our packages to npm, but GitHub packages.
+
+By adding the code below to your `.npmrc` file, you are defining where npm/yarn can download our package from.
+
+```
+
+```
+
+After creating your `.npmrc` file, you can run the commands below to install styless.
+
+```shell
+npm i styless-react
+
+// or
+
+yarn add styless-react
+```
+
+## Storybook/Documentation
+
+We use [storybook](https://jblevins1991.github.io/styless-react/?path=/story/components-breadcrumbs--page) for our documentation.

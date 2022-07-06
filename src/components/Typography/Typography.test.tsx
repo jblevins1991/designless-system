@@ -7,7 +7,7 @@
  import Typography from './Typography';
 
  describe('Typography Component', () => {
-    it('should render', async () => {
+    it('should render paragraph by default', async () => {
         render(<Typography>
             text
         </Typography>);

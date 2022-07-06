@@ -19,7 +19,7 @@
             `}
         </Code>);
 
-        expect(screen.getByRole('code')).toBeInTheDocument();
+        expect(screen.getByText('code')).toBeInTheDocument();
     });
 
     it('should copy the code contents to clipboard', async () => {

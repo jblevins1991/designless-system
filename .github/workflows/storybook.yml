@@ -7,9 +7,9 @@ on:
     paths:
       - '.github/workflows/storybook.yml'
 jobs:
-  npm-publish:
+  github-pages-deployment:
     runs-on: ubuntu-latest
-    name: Publish Package
+    name: Deploy Storybook
     steps:
       - name: GitHub Checkout
         uses: actions/checkout@v3

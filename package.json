@@ -15,7 +15,7 @@
     "lint": "eslint ./src -c .eslintrc",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-gh-pages"
+    "deploy-storybook": "storybook-to-gh-pages -o=storybook-static --ci"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",

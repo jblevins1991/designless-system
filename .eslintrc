@@ -5,7 +5,10 @@
         "ecmaFeatures": {
             "jsx": true,
             "modules": true
-        }
+        },
+        "project": [
+            "./tsconfig.json"
+        ]
     },
     "env": {
         "browser": true,

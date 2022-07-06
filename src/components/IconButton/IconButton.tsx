@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import * as React from 'react';
 
-import {Button, ButtonProps} from '..';
+import Button, { ButtonProps } from '../Button/Button';
 
 export interface IconButtonProps extends ButtonProps {
     icon: React.ReactNode;

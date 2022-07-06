@@ -1,0 +1,51 @@
+name: Code Quality
+on:
+  pull_request:
+    branches:
+      - main
+      - development
+      - feature/**
+      - feat/**
+      - bugfix/**
+      - fix/**
+      - chore/**
+      - release/**
+      - beta/**
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    name: Setup
+    steps:
+      - name: GitHub Checkout
+        uses: actions/checkout@v3
+
+      - name: Node.js Configuration
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install Yarn & Dependencies
+        run: |
+          npm i -g yarn
+          yarn install --frozen-lockfile
+  test:
+    runs-on: ubuntu-latest
+    name: Automated Testing
+    needs: setup
+    steps:
+      - name: Run Unit Tests
+        run: yarn test
+  eslint:
+    runs-on: ubuntu-latest
+    name: Static Code Analysis
+    needs: setup
+    steps:
+      - name: Run ESLint
+        run: yarn lint
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    needs: [setup, test, eslint]
+    steps:
+      - name: Run Build System
+        run: yarn build

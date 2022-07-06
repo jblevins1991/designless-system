@@ -11,6 +11,8 @@ on:
       - chore/**
       - release/**
       - beta/**
+    paths:
+      - '.github/workflows/code-quality.yml'
 jobs:
   code-quality:
     runs-on: ubuntu-latest

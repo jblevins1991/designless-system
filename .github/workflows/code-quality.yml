@@ -14,7 +14,7 @@ on:
 jobs:
   code-quality:
     runs-on: ubuntu-latest
-    name: Setup
+    name: Code Quality
     steps:
       - name: GitHub Checkout
         uses: actions/checkout@v3

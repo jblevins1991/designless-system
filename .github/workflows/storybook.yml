@@ -1,0 +1,32 @@
+name: Storybook Github Pages Deployment
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/storybook.yml'
+jobs:
+  npm-publish:
+    runs-on: ubuntu-latest
+    name: Publish Package
+    steps:
+      - name: GitHub Checkout
+        uses: actions/checkout@v3
+
+      - name: Node.js Configuration
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install Yarn & Dependencies
+        run: |
+          npm i -g yarn
+          yarn install --frozen-lockfile
+
+      - name: Build Storybook
+        run: yarn build-storybook
+
+      - name: Deploy Storybook to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: storybook-static

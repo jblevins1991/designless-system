@@ -12,7 +12,7 @@ on:
       - release/**
       - beta/**
 jobs:
-  setup:
+  code-quality:
     runs-on: ubuntu-latest
     name: Setup
     steps:
@@ -28,24 +28,12 @@ jobs:
         run: |
           npm i -g yarn
           yarn install --frozen-lockfile
-  test:
-    runs-on: ubuntu-latest
-    name: Automated Testing
-    needs: setup
-    steps:
+
       - name: Run Unit Tests
         run: yarn test
-  eslint:
-    runs-on: ubuntu-latest
-    name: Static Code Analysis
-    needs: setup
-    steps:
+
       - name: Run ESLint
         run: yarn lint
-  build:
-    runs-on: ubuntu-latest
-    name: Build
-    needs: [setup, test, eslint]
-    steps:
+
       - name: Run Build System
         run: yarn build

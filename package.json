@@ -12,7 +12,7 @@
     "build": "rollup -c rollup.config.js",
     "compile": "tsc -b",
     "test": "jest -c jest.config.js",
-    "lint": "eslint . **/*.ts **/*.tsx",
+    "lint": "eslint ./src -c .eslintrc",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

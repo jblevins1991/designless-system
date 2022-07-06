@@ -7,6 +7,9 @@
   "module": "dist/designless-system.esm.js",
   "repository": "git@github.com:jblevins1991/designless-system.git",
   "author": "Joshua Blevins <josh.adam.blevins@gmail.com>",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "license": "MIT",
   "scripts": {
     "build": "rollup -c rollup.config.js",

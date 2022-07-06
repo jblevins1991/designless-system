@@ -28,4 +28,4 @@ jobs:
         run: yarn build-storybook
 
       - name: Deploy Storybook to GitHub Pages
-        run: yarn deploy-storybook
+        run: yarn deploy-storybook -- --existing-output-dir=.storybook-static

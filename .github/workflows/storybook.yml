@@ -28,6 +28,4 @@ jobs:
         run: yarn build-storybook
 
       - name: Deploy Storybook to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: storybook-static
+        run: yarn deploy-storybook

@@ -16,7 +16,7 @@
      onFocus: (event: React.FocusEvent<HTMLAnchorElement>) => {},
  };
 
- describe('Card Component', () => {
+ describe('Link Component', () => {
     it('should render', async () => {
         render(<Link href='https://www.google.com'>Google</Link>);
 

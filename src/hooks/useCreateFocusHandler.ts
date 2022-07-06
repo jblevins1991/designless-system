@@ -6,14 +6,15 @@ const useCreateFocusHandler = <ElementType>(
     deps?: React.DependencyList,
 ) => {
     return React.useCallback((event: React.FocusEvent<ElementType>) => {
-        if (!disabled) {
-            if (onFocus) {
-                onFocus(event);
-            }
+        if (disabled) {
+            return;
+        }
+        else {
+            onFocus?.(event);
         }
     }, [
         disabled,
-        deps,
+        deps
     ]);
 };
 

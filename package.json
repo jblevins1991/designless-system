@@ -1,5 +1,5 @@
 {
-  "name": "designless-system",
+  "name": "styless-react",
   "version": "0.0.0",
   "description": "A component library with no opinionation in styles. The perfect foundation to build your design system with.",
   "main": "dist/designless-system.cjs.js",

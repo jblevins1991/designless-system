@@ -20,10 +20,11 @@ props as close to the JSX specification as possible.
 
 **Props Details**
 
-| Name       | Default Value | Possible Values                      | Description                                                  |
+| Name       | Default Value | Type                                 | Description                                                  |
 |------------|---------------|--------------------------------------|--------------------------------------------------------------|
-| className  |               |                                      | Appends a class to the button element.                       |
-| id         |               |                                      | Sets the id on the button element.                           |
+| children   |               | React.ReactNode                      | The child components to render.                              |
+| className  |               | string                               | Appends a class to the button element.                       |
+| id         |               | string                               | Sets the id on the button element.                           |
 | type       | 'button'      | 'button', 'submit', 'reset'          |                                                              |
 
 ## Render Props
@@ -33,7 +34,7 @@ a component's className to give developers a way to control how their component 
 
 **Render Props Details**
 
-| Name       | Default Value | Possible Values                      | Description                                                  |
+| Name       | Default Value | Type                                 | Description                                                  |
 |------------|---------------|--------------------------------------|--------------------------------------------------------------|
 | color      | 'primary'     | 'primary', 'secondary', 'tertiary'   | Controls the background color used from your design system.  |
 | size       | 'medium'      | 'large', 'medium', 'small'           | Controls the size of the button being rendered.              |

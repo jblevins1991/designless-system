@@ -23,7 +23,7 @@ props as close to the Button component's as possible.
 
 **Props Details**
 
-| Name       | Default Value | Possible Values                      | Description                                                  |
+| Name       | Default Value | Type                                 | Description                                                  |
 |------------|---------------|--------------------------------------|--------------------------------------------------------------|
 | className  |               |                                      | Appends a class to the button element.                       |
 | id         |               |                                      | Sets the id on the button element.                           |
@@ -36,10 +36,10 @@ a component's className to give developers a way to control how their component 
 
 **Render Props Details**
 
-| Name       | Default Value | Possible Values                      | Description                                                  |
+| Name       | Default Value | Type                                 | Description                                                  |
 |------------|---------------|--------------------------------------|--------------------------------------------------------------|
 | color      | 'primary'     | 'primary', 'secondary', 'tertiary'   | Controls the background color used from your design system.  |
-| icon       |               |                                      | The icon to render in the button.                            |
+| icon       |               | React.ReactNode                      | The icon to render in the button.                            |
 | size       | 'medium'      | 'large', 'medium', 'small'           | Controls the size of the button being rendered.              |
 | variant    | 'solid'       | 'solid', 'outlined', 'text'          | Controls the visual representation of the button.            |
 

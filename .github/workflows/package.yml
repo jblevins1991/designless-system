@@ -1,0 +1,33 @@
+name: GH Packages Deployment
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - '.github/workflows/package.yml'
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    name: Publish Package
+    steps:
+      - name: GitHub Checkout
+        uses: actions/checkout@v3
+
+      - name: Node.js Configuration
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install Yarn & Dependencies
+        run: |
+          npm i -g yarn
+          yarn install --frozen-lockfile
+
+      - name: Run Build System
+        run: yarn build
+
+      - name: Publish to GH Packages
+        run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

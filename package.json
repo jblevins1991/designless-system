@@ -1,5 +1,5 @@
 {
-  "name": "designless-system",
+  "name": "styless-react",
   "version": "0.0.0",
   "description": "A component library with no opinionation in styles. The perfect foundation to build your design system with.",
   "main": "dist/designless-system.cjs.js",
@@ -7,6 +7,9 @@
   "module": "dist/designless-system.esm.js",
   "repository": "git@github.com:jblevins1991/designless-system.git",
   "author": "Joshua Blevins <josh.adam.blevins@gmail.com>",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "license": "MIT",
   "scripts": {
     "build": "rollup -c rollup.config.js",

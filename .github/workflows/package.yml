@@ -32,9 +32,9 @@ jobs:
         run: npm run build
 
       - name: Automated Version Bump
-        uses: 'rimonhanna/gh-action-bump-version@master'
-        with:
-          tag-prefix: ''
+        uses: phips28/gh-action-bump-version@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to GH Packages
         run: npm publish:gh

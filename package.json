@@ -1,6 +1,6 @@
 {
   "name": "styless-react",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A component library with no opinionation in styles. The perfect foundation to build your design system with.",
   "main": "dist/designless-system.cjs.js",
   "browser": "dist/designless-system.umd.js",
@@ -8,12 +8,13 @@
   "repository": "git@github.com:jblevins1991/designless-system.git",
   "author": "Joshua Blevins <josh.adam.blevins@gmail.com>",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "@jblevins1991:registry": "https://npm.pkg.github.com"
   },
   "license": "MIT",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "compile": "tsc -b",
+    "publish:gh": "yarn publish --registry=https://npm.pkg.github.com --verbose",
     "test": "jest -c jest.config.js",
     "lint": "eslint ./src -c .eslintrc",
     "storybook": "start-storybook -p 6006",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@babel/core": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
+    "@mdx-js/react": "^2.1.2",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.3.3",
@@ -33,6 +35,7 @@
     "@storybook/addon-links": "^6.5.9",
     "@storybook/builder-webpack4": "^6.5.9",
     "@storybook/manager-webpack4": "^6.5.9",
+    "@storybook/mdx2-csf": "^0.0.3",
     "@storybook/react": "^6.5.9",
     "@storybook/storybook-deployer": "^2.8.11",
     "@storybook/testing-library": "^0.0.13",

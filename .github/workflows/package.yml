@@ -10,6 +10,9 @@ jobs:
   package:
     runs-on: ubuntu-latest
     name: Publish Package
+    permissions:
+      packages: write
+      contents: read
     steps:
       - name: GitHub Checkout
         uses: actions/checkout@v3
@@ -19,16 +22,21 @@ jobs:
         with:
           always-auth: true
           node-version: 16.x
+          registry-url: https://npm.pkg.github.com/
 
       - name: Install Yarn & Dependencies
         run: |
-          npm i -g yarn
-          yarn install --frozen-lockfile
+          npm i --ci
 
       - name: Run Build System
-        run: yarn build
+        run: npm run build
+
+      - name: Automated Version Bump
+        uses: 'rimonhanna/gh-action-bump-version@master'
+        with:
+          tag-prefix: ''
 
       - name: Publish to GH Packages
-        run: yarn publish
+        run: npm publish:gh
         env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -26,7 +26,7 @@ jobs:
 
       - name: Install Yarn & Dependencies
         run: |
-          npm i --ci
+          npm install --ci
 
       - name: Run Build System
         run: npm run build

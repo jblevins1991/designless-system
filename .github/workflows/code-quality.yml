@@ -26,16 +26,14 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install Yarn & Dependencies
-        run: |
-          npm i -g yarn
-          yarn install --frozen-lockfile
+      - name: Install Dependencies
+        run: npm install --ci
 
       - name: Run Unit Tests
-        run: yarn test
+        run: npm run test
 
       - name: Run ESLint
-        run: yarn lint
+        run: npm run lint
 
       - name: Run Build System
-        run: yarn build
+        run: npm run build

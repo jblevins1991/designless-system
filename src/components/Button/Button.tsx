@@ -54,6 +54,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     onClick,
     onFocus,
     size = 'medium',
+    type = 'button',
     variant = 'filled',
     ...props
 }, ref) => {
@@ -83,6 +84,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
         onClick={handleClick}
         onFocus={handleFocus}
         disabled={disabled}
+        type={type}
         ref={ref}
     >
         {children}

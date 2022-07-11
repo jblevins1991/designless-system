@@ -1,5 +1,18 @@
 name: Code Quality
 on:
+  pull_request:
+    branches:
+      - main
+      - development
+      - feature/**
+      - feat/**
+      - bugfix/**
+      - fix/**
+      - chore/**
+      - release/**
+      - beta/**
+    paths:
+      - '.github/workflows/code-quality.yml'
   push:
     branches:
       - main

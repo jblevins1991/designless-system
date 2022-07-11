@@ -19,6 +19,16 @@ export {
 } from './Code/Code';
 
 export {
+    default as Error,
+    ErrorProps
+} from './Error/Error';
+
+export {
+    default as Hint,
+    HintProps
+} from './Hint/Hint';
+
+export {
     default as IconButton,
     IconButtonProps
 } from './IconButton/IconButton';

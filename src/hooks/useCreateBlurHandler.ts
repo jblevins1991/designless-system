@@ -6,11 +6,9 @@ const useCreateBlurHandler = <ElementType>(
     deps?: React.DependencyList,
 ) => {
     return React.useCallback((event: React.FocusEvent<ElementType>) => {
-        if (!disabled) {
-            if (onBlur) {
-                onBlur(event);
-            }
-        }
+        if (disabled) return;
+
+        onBlur?.(event);
     }, [
         disabled,
         deps,

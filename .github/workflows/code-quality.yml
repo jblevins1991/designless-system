@@ -1,18 +1,11 @@
 name: Code Quality
 on:
-  push:
+  pull_request:
     branches:
       - main
-      - development
-      - feature/**
-      - feat/**
-      - bugfix/**
-      - fix/**
-      - chore/**
-      - release/**
-      - beta/**
     paths:
       - '.github/workflows/code-quality.yml'
+    workflow_dispatch:
 jobs:
   code-quality:
     runs-on: ubuntu-latest

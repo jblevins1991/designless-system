@@ -2,13 +2,11 @@ name: Code Quality
 on:
   pull_request:
     branches:
-      - feature/**
-      - feat/**
-      - bugfix/**
-      - fix/**
-      - chore/**
-      - release/**
-      - beta/**
+      - 'feature/**'
+      - 'feat/**'
+      - 'bugfix/**'
+      - 'fix/**'
+      - 'chore/**'
     paths:
       - '.github/workflows/code-quality.yml'
     workflow_dispatch:

@@ -26,6 +26,7 @@ on:
       - beta/**
     paths:
       - '.github/workflows/code-quality.yml'
+  workflow_dispatch
 jobs:
   code-quality:
     runs-on: ubuntu-latest

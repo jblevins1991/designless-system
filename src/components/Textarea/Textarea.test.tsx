@@ -19,7 +19,7 @@
         render(<Textarea label='Test' name='test' />);
 
         expect(screen.getByRole('textbox')).toBeInTheDocument();
-    });
+    });     
 
     it('should contain an accessible label', () => {
         render(<Textarea label='Test' name='test' />);
@@ -29,18 +29,36 @@
 
     it('should render an accessible hint', () => {
         render(<Textarea label='Test' hint='Try something' name='test' />);
+
+        const input = screen.getByLabelText('Test');
+        const hint = screen.getByText('Try something');
+
+        expect(hint).toBeInTheDocument();
+        expect(input.getAttribute('aria-describedby')).toEqual(hint.getAttribute('id'));
     });
 
     it('should render an accessible error', () => {
         render(<Textarea label='Test' error='Error text' name='test' />);
+
+        const input = screen.getByLabelText('Test');
+        const error = screen.getByText('Error text');
+
+        expect(error).toBeInTheDocument();
+        expect(input.getAttribute('aria-errormessage')).toEqual(error.getAttribute('id'));
     });
 
-    it('should focus the input when the label is clicked', () => {
+    it('should focus the input when the label is clicked', async () => {
+        const user = userEvent.setup();
+
         render(<Textarea
             label='Test'
             onBlur={eventHandlers.onBlur}
             name='test'
         />);
+
+        await user.click(screen.getByText('Test'));
+
+        expect(screen.getByLabelText('Test')).toHaveFocus();
     });
 
     it('should fire the `onBlur` event handler', async () => {

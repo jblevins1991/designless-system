@@ -13,3 +13,11 @@ export const DefualtTextarea = () => {
         name='textarea'
     />
 }
+
+export const TextareaWithHint = () => {
+    return <Textarea
+        label='textarea'
+        name='textarea'
+        error='Error text'
+    />
+}

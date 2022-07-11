@@ -6,11 +6,9 @@ const useCreateChangeHandler = <ElementType>(
     deps?: React.DependencyList,
 ) => {
     return React.useCallback((event: React.ChangeEvent<ElementType>) => {
-        if (!disabled) {
-            if (onChange) {
-                onChange(event);
-            }
-        }
+        if (disabled) return;
+
+        onChange?.(event);
     }, [
         disabled,
         deps,

@@ -6,11 +6,9 @@ const useCreateClickHandler = <ElementType>(
     deps?: React.DependencyList,
 ) => {
     return React.useCallback((event: React.MouseEvent<ElementType>) => {
-        if (!disabled) {
-            if (onClick) {
-                onClick(event);
-            }
-        }
+        if (disabled) return;
+
+        onClick?.(event);
     }, [
         disabled,
         deps,

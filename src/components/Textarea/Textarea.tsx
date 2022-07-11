@@ -88,6 +88,7 @@ const Textarea = React.forwardRef<
             }
             disabled={disabled}
             id={`${id}-textarea`}
+            name={name}
             onBlur={handleBlur}
             onChange={handleChange}
             onClick={handleClick}

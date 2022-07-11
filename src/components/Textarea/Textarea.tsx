@@ -77,7 +77,7 @@ const Textarea = React.forwardRef<
 
         <textarea
             {...props}
-            aria-describedby={`${id}-error`}
+            aria-describedby={`${id}-hint`}
             aria-errormessage={`${id}-error`}
             aria-invalid={!!error}
             className={

@@ -54,6 +54,16 @@ export {
 } from './OrderedList/OrderedList';
 
 export {
+    default as SelectableList,
+    SelectableListProps
+} from './SelectableList/SelectableList';
+
+export {
+    default as SelectableListItem,
+    SelectableListItemProps
+} from './SelectableList/SelectableListItem';
+
+export {
     default as Typography,
     TypographyProps
 } from './Typography/Typography';

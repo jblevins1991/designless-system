@@ -5,6 +5,7 @@
   "main": "dist/designless-system.cjs.js",
   "browser": "dist/designless-system.umd.js",
   "module": "dist/designless-system.esm.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:jblevins1991/designless-system.git",
   "author": "Joshua Blevins <josh.adam.blevins@gmail.com>",
   "publishConfig": {

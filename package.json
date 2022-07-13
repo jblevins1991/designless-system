@@ -9,7 +9,7 @@
   "repository": "git@github.com:jblevins1991/styless-react.git",
   "author": "Joshua Blevins <josh.adam.blevins@gmail.com>",
   "publishConfig": {
-    "@jblevins1991:registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org/"
   },
   "license": "MIT",
   "scripts": {

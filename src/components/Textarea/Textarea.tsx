@@ -15,7 +15,7 @@ import {
 
 type TextareaOmitProps = 'name';
 
-export interface TextareaProps extends Omit<React.HTMLAttributes<HTMLTextAreaElement>, TextareaOmitProps> {
+interface TextareaProps extends Omit<React.HTMLAttributes<HTMLTextAreaElement>, TextareaOmitProps> {
     disabled?: boolean;
     error?: string;
     hint?: string;
@@ -107,5 +107,9 @@ const Textarea = React.forwardRef<
 });
 
 Textarea.displayName = 'Textarea';
+
+export type {
+    TextareaProps
+};
 
 export default Textarea;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface HintProps {
+interface HintProps {
     children?: React.ReactNode;
     id: string;
 }
@@ -15,5 +15,9 @@ const Hint: React.FC<HintProps> = ({
 };
 
 Hint.displayName = 'Hint';
+
+export type {
+    HintProps
+};
 
 export default Hint;

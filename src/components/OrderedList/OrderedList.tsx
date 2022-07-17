@@ -2,7 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface OrderedListProps extends React.HTMLAttributes<HTMLOListElement> {}
+interface OrderedListProps extends React.HTMLAttributes<HTMLOListElement> {}
 
 const OrderedList: React.FC<OrderedListProps> = ({
     children,
@@ -23,5 +23,9 @@ const OrderedList: React.FC<OrderedListProps> = ({
 };
 
 OrderedList.displayName = 'OrderedList';
+
+export type {
+    OrderedListProps
+};
 
 export default OrderedList;

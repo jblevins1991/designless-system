@@ -2,7 +2,7 @@ import * as React from "react";
 import classNames from "classnames";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const Card: React.FC<CardProps> = ({
     children,
@@ -23,5 +23,9 @@ const Card: React.FC<CardProps> = ({
 };
 
 Card.displayName = 'Card';
+
+export type {
+    CardProps
+};
 
 export default Card;

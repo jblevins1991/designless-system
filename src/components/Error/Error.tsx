@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface ErrorProps {
+interface ErrorProps {
     children?: React.ReactNode;
     id: string;
 }
@@ -19,5 +19,9 @@ const Error: React.FC<ErrorProps> = ({
 };
 
 Error.displayName = 'Error';
+
+export type {
+    ErrorProps
+};
 
 export default Error;

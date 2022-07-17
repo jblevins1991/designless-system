@@ -10,7 +10,7 @@ import { color, size } from '../../types/commonProps';
 
 type ButtonOmitProps = 'size';
 
-export interface ButtonProps extends Omit<React.HTMLAttributes<HTMLButtonElement>, ButtonOmitProps> {
+interface ButtonProps extends Omit<React.HTMLAttributes<HTMLButtonElement>, ButtonOmitProps> {
     /**
      * The color of the button.
      * 
@@ -92,5 +92,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
 });
 
 Button.displayName = 'Button';
+
+export type {
+    ButtonProps
+};
 
 export default Button;

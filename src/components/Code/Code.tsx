@@ -5,7 +5,7 @@ import {
     getWindow
 } from '../../hooks';
 
-export interface CodeProps {
+interface CodeProps {
     children?: string;
     className?: string;
     copyIcon: React.ReactNode;
@@ -64,5 +64,9 @@ const Code: React.FC<CodeProps> = ({
 };
 
 Code.displayName = 'Code';
+
+export type {
+    CodeProps
+};
 
 export default Code;

@@ -1,64 +1,28 @@
-export {
-    default as Breadcrumb,
-    BreadcrumbProps
-} from './Breadcrumb/Breadcrumb';
+export {default as Breadcrumb} from './Breadcrumb/Breadcrumb';
+export {default as Button} from './Button/Button';
+export {default as Card} from './Card/Card';
+export {default as Code} from './Code/Code';
+export {default as Error} from './Error/Error';
+export {default as Hint} from './Hint/Hint';
+export {default as IconButton} from './IconButton/IconButton';
+export {default as Image} from './Image/Image';
+export {default as Link} from './Link/Link';
+export {default as ListItem} from './ListItem/ListItem';
+export {default as OrderedList} from './OrderedList/OrderedList';
+export {default as Typography} from './Typography/Typography';
+export {default as UnorderedList} from './UnorderedList/UnorderedList';
 
-export {
-    default as Button,
-    ButtonProps
-} from './Button/Button';
-
-export {
-    default as Card,
-    CardProps
-} from './Card/Card';
-
-export {
-    default as Code,
-    CodeProps
-} from './Code/Code';
-
-export {
-    default as Error,
-    ErrorProps
-} from './Error/Error';
-
-export {
-    default as Hint,
-    HintProps
-} from './Hint/Hint';
-
-export {
-    default as IconButton,
-    IconButtonProps
-} from './IconButton/IconButton';
-
-export {
-    default as Image,
-    ImageProps
-} from './Image/Image';
-
-export {
-    default as Link,
-    LinkProps
-} from './Link/Link';
-
-export {
-    default as ListItem,
-    ListItemProps
-} from './ListItem/ListItem';
-
-export {
-    default as OrderedList,
-    OrderedListProps
-} from './OrderedList/OrderedList';
-
-export {
-    default as Typography,
-    TypographyProps
-} from './Typography/Typography';
-
-export {
-    default as UnorderedList,
-    UnorderedListProps
-} from './UnorderedList/UnorderedList';
+export type {BreadcrumbProps} from './Breadcrumb/Breadcrumb';
+export type {ButtonProps} from './Button/Button';
+export type {CardProps} from './Card/Card';
+export type {CodeProps} from './Code/Code';
+export type {ErrorProps} from './Error/Error';
+export type {HintProps} from './Hint/Hint';
+export type {IconButtonProps} from './IconButton/IconButton';
+export type {ImageProps} from './Image/Image';
+export type {LinkProps} from './Link/Link';
+export type {ListItemProps} from './ListItem/ListItem';
+export type {OrderedListProps} from './OrderedList/OrderedList';
+export type {TextareaProps} from './Textarea/Textarea';
+export type {TypographyProps} from './Typography/Typography';
+export type {UnorderedListProps} from './UnorderedList/UnorderedList';

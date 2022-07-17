@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-export interface ImageProps extends React.HTMLAttributes<HTMLImageElement> {
+interface ImageProps extends React.HTMLAttributes<HTMLImageElement> {
     alt: string;
     src: string;
 }
@@ -32,5 +32,9 @@ const Image: React.FC<ImageProps> = ({
 };
 
 Image.displayName = 'Image';
+
+export type {
+    ImageProps
+};
 
 export default Image;

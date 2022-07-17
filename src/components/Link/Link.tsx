@@ -7,7 +7,7 @@ import {
     useCreateFocusHandler
 } from '../../hooks';
 
-export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
+interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
     /**
      * 
      */
@@ -68,5 +68,9 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(({
 });
 
 Link.displayName = 'Link';
+
+export type {
+    LinkProps
+};
 
 export default Link;

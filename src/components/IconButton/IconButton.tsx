@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import Button, { ButtonProps } from '../Button/Button';
 
-export interface IconButtonProps extends ButtonProps {
+interface IconButtonProps extends ButtonProps {
     icon: React.ReactNode;
 }
 
@@ -27,5 +27,9 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(({
 });
 
 IconButton.displayName = 'IconButton';
+
+export type {
+    IconButtonProps
+};
 
 export default IconButton;

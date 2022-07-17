@@ -1,7 +1,7 @@
 import * as React from "react";
 import classNames from "classnames";
 
-export interface BreadcrumbProps {
+interface BreadcrumbProps {
     className?: string;
     id?: string;
     url: string;
@@ -25,5 +25,9 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
 };
 
 Breadcrumb.displayName = 'Breadcrumb';
+
+export type {
+    BreadcrumbProps
+};
 
 export default Breadcrumb;

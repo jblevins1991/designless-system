@@ -1,11 +1,11 @@
 {
   "name": "styless-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A component library with no opinionation in styles. The perfect foundation to build your design system with.",
   "main": "dist/designless-system.cjs.js",
   "browser": "dist/designless-system.umd.js",
   "module": "dist/designless-system.esm.js",
-  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "repository": "git@github.com:jblevins1991/styless-react.git",
   "author": "Joshua Blevins <josh.adam.blevins@gmail.com>",
   "publishConfig": {

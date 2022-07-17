@@ -2,17 +2,13 @@ import * as React from 'react';
 
 const useCreateClickHandler = <ElementType>(
     onClick: (event: React.MouseEvent<ElementType>) => void,
-    disabled: boolean,
-    deps?: React.DependencyList,
+    disabled: boolean
 ) => {
-    return React.useCallback((event: React.MouseEvent<ElementType>) => {
+    return (event: React.MouseEvent<ElementType>) => {
         if (disabled) return;
 
         onClick?.(event);
-    }, [
-        disabled,
-        deps,
-    ]);
+    };
 };
 
 export default useCreateClickHandler;

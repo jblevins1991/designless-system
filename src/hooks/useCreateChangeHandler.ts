@@ -2,17 +2,13 @@ import * as React from 'react';
 
 const useCreateChangeHandler = <ElementType>(
     onChange: (event: React.ChangeEvent<ElementType>) => void,
-    disabled: boolean,
-    deps?: React.DependencyList,
+    disabled: boolean
 ) => {
-    return React.useCallback((event: React.ChangeEvent<ElementType>) => {
+    return (event: React.ChangeEvent<ElementType>) => {
         if (disabled) return;
 
         onChange?.(event);
-    }, [
-        disabled,
-        deps,
-    ]);
+    };
 };
 
 export default useCreateChangeHandler;

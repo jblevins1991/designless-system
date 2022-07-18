@@ -5,17 +5,19 @@
   "main": "dist/designless-system.cjs.js",
   "browser": "dist/designless-system.umd.js",
   "module": "dist/designless-system.esm.js",
-  "typings": "dist/index.d.ts",
-  "repository": "git@github.com:jblevins1991/styless-react.git",
-  "author": "Joshua Blevins <josh.adam.blevins@gmail.com>",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": ""
   },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "engineStrict": true,
+  "author": "Joshua Blevins <josh.adam.blevins@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "rollup -c rollup.config.js",
-    "compile": "tsc -b",
-    "publish:gh": "yarn publish --registry=https://npm.pkg.github.com --verbose",
     "test": "jest -c jest.config.js",
     "lint": "eslint ./src -c .eslintrc",
     "storybook": "start-storybook -p 6006",

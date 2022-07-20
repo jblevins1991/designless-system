@@ -13,9 +13,7 @@ const useListFocusTrap = (
     const [focusIndex, setFocusIndex] = React.useState(0);
     const [previousFocusIndex, setPreviousFocusIndex] = React.useState(undefined);
 
-    const handleKeyDown = (event: React.KeyboardEvent) => {
-        if (!isTrapped) return;
-        
+    const handleKeyDown = (event: React.KeyboardEvent) => {        
         const lastFocusableIndex = listLength - 1;
 
         setPreviousFocusIndex(focusIndex);
@@ -45,6 +43,10 @@ const useListFocusTrap = (
                     setFocusIndex(focusIndex - 1);
                 }
                 break;
+            default:
+                if (!isTrapped) {
+                    event.preventDefault();
+                }
         }
     };
 

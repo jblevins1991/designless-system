@@ -73,7 +73,6 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
                     key: assertedChild.props.title,
                     ...assertedChild.props,
                     onClick: () => {
-                        console.log('click');
                         handleOnAccordionClick(index);
                     },
                     onKeyDown: handleOnKeyDown,

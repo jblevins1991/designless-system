@@ -15,7 +15,7 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
     const returnFocus = () => accordionGroup.current.focus();
 
     const [
-        isTrapped,
+        // isTrapped,
         setIsTrapped,
         focusableIndex,
         setFocusableIndex,
@@ -58,7 +58,7 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
             case 'ArrowDown':
                 setIsTrapped(true);
                 break;
-        };
+        }
     };
 
     return <div

@@ -120,6 +120,8 @@ const Accordion = React.forwardRef<
     </>;
 });
 
+Accordion.displayName = 'Accordion';
+
 export type {
     AccordionProps,
     AccordionHandle

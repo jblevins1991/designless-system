@@ -2,6 +2,7 @@ import * as React from 'react';
 
 const useListFocusTrap = (
     listLength: number,
+    returnFocus: () => void,
     escapeKeyCode = 'escape',
     firstKeyCode = 'home',
     lastKeyCode = 'end',
@@ -13,6 +14,8 @@ const useListFocusTrap = (
     const [previousFocusIndex, setPreviousFocusIndex] = React.useState(undefined);
 
     const handleKeyDown = (event: React.KeyboardEvent) => {
+        if (!isTrapped) return;
+        
         const lastFocusableIndex = listLength - 1;
 
         setPreviousFocusIndex(focusIndex);
@@ -20,6 +23,7 @@ const useListFocusTrap = (
         switch(event.code) {
             case escapeKeyCode:
                 setIsTrapped(false);
+                returnFocus();
                 break;
             case firstKeyCode:
                 setFocusIndex(0);

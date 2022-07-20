@@ -10,6 +10,10 @@ interface AccordionGroupProps {
 const AccordionGroup: React.FC<AccordionGroupProps> = ({
     children
 }) => {
+    const accordionGroup = React.useRef(null);
+
+    const returnFocus = () => accordionGroup.current.focus();
+
     const [
         isTrapped,
         setIsTrapped,
@@ -18,9 +22,11 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
         handleOnKeyDown,
         previousFocusableIndex,
         setPreviousFocuableIndex,
-    ] = useListFocusTrap(React.Children.count(children));
+    ] = useListFocusTrap(
+        React.Children.count(children),
+        returnFocus,
+    );
 
-    const accordionGroup = React.useRef(null);
     const previousAccordion = React.useRef<AccordionHandle>(null);
     const activeAccordion = React.useRef<AccordionHandle>(null);
 
@@ -29,12 +35,23 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
     }, [focusableIndex]);
 
     React.useEffect(() => {
-        previousAccordion.current.close();
-        focusableIndex.current.open();
+        activeAccordion.current?.open();
     }, [
-        focusableIndex,
+        focusableIndex
+    ]);
+
+    React.useEffect(() => {
+        previousAccordion.current?.close();
+    }, [
         previousFocusableIndex
     ]);
+
+    const handleOnAccordionClick = React.useCallback(async (index: number) => {
+        if (focusableIndex !== index) {
+            await setPreviousFocuableIndex(focusableIndex);
+            await setFocusableIndex(index);
+        }
+    }, [focusableIndex]);
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
         switch (event.key) {
@@ -45,6 +62,7 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
     };
 
     return <div
+        onKeyDown={handleKeyDown}
         tabIndex={0}
     >
         {
@@ -55,8 +73,8 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
                     key: assertedChild.props.title,
                     ...assertedChild.props,
                     onClick: () => {
-                        setPreviousFocuableIndex(focusableIndex);
-                        setFocusableIndex(index);
+                        console.log('click');
+                        handleOnAccordionClick(index);
                     },
                     onKeyDown: handleOnKeyDown,
                     ...(index === focusableIndex && { ref: activeAccordion }),

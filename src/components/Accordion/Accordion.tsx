@@ -2,6 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 
 import {
+    useControlled,
     useCreateBlurHandler,
     useCreateClickHandler,
     useCreateFocusHandler
@@ -11,10 +12,12 @@ interface AccordionProps {
     children: React.ReactNode;
     className?: string;
     disabled?: boolean;
-    onBlur: (event: React.FocusEvent<HTMLButtonElement>) => void;
-    onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-    onFocus: (event: React.FocusEvent<HTMLButtonElement>) => void;
-    onKeyDown: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
+    onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    onChange?: (open: boolean) => void;
+    onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+    onKeyDown?: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
+    open?: boolean;
     title: React.ReactNode;
 }
 
@@ -33,27 +36,46 @@ const Accordion = React.forwardRef<
     disabled = false,
     onBlur,
     onClick,
+    onChange,
     onFocus,
     onKeyDown,
+    open: openProp,
     title,
 }, ref) => {
     const id = React.useId();
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [open, setOpenIfUncontrolled] = useControlled({
+        controlled: openProp,
+        default: false,
+        name: 'Accordion'
+    })
     const button = React.useRef(null);
 
     React.useImperativeHandle(ref, () => {
         return {
             button,
-            close: () => setIsOpen(false),
-            open: () => setIsOpen(true),
+            close: () => {
+                console.log('close')
+                setOpenIfUncontrolled(false);
+                onChange?.(false);
+            },
+            open: () => {
+                console.log('open')
+                setOpenIfUncontrolled(true);
+                onChange?.(false);
+            },
         }
     });
+
+    React.useEffect(() => {
+        onChange?.(open);
+    }, [open]);
+
     const handleBlur = useCreateBlurHandler((event: React.FocusEvent<HTMLButtonElement>) => {
         onBlur?.(event);
     }, disabled);
     
     const handleClick = useCreateClickHandler((event: React.MouseEvent<HTMLButtonElement>) => {
-        setIsOpen(!isOpen);
+        setOpenIfUncontrolled(!open);
 
         onClick?.(event);
     }, disabled);
@@ -89,7 +111,7 @@ const Accordion = React.forwardRef<
             className={
                 classNames(
                     'accordion-content',
-                    isOpen ? 'visible' : 'hidden'
+                    open ? 'visible' : 'hidden'
                 )}
             id={`${id}-accordion-body`}
         >

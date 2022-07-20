@@ -6,9 +6,9 @@
   "browser": "dist/designless-system.umd.js",
   "module": "dist/designless-system.esm.js",
   "types": "dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": ""
+  "repository": "git@github.com:jblevins1991/styless-react.git",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "engines": {
     "node": ">=16.0.0"

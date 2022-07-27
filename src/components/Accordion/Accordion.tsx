@@ -54,12 +54,10 @@ const Accordion = React.forwardRef<
         return {
             button,
             close: () => {
-                console.log('close')
                 setOpenIfUncontrolled(false);
                 onChange?.(false);
             },
             open: () => {
-                console.log('open')
                 setOpenIfUncontrolled(true);
                 onChange?.(false);
             },

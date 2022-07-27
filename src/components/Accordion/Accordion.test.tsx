@@ -22,8 +22,8 @@
             Content
         </Accordion>);
 
-        screen.findByText('Title');
-        screen.findByText('Content');
+        screen.findByText(/Title/i);
+        screen.findByText(/Content/i);
     });
 
     it('should have a class name of hidden', async () => {
@@ -33,7 +33,7 @@
             Content
         </Accordion>);
 
-        expect((await screen.findByText('Content')).classList).toContain('hidden');
+        expect((await screen.findByText(/Content/i)).classList).toContain('hidden');
     });
 
     it('should have a class name of hidden', async () => {
@@ -45,6 +45,6 @@
 
         await user.click(screen.getByRole('button'));
 
-        expect((await screen.findByText('Content')).classList).toContain('visible');
+        expect((await screen.findByText(/Content/i)).classList).toContain('visible');
     });
  });

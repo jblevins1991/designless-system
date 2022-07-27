@@ -39,7 +39,6 @@ const Textarea = React.forwardRef<
     onFocus,
     ...props
 }, ref) => {
-    console.log('disabled', disabled);
     const id = React.useId();
 
     const handleBlur = useCreateBlurHandler(

@@ -36,7 +36,7 @@
         expect((await screen.findByText(/Content/i)).classList).toContain('hidden');
     });
 
-    it('should have a class name of hidden', async () => {
+    it('should have a class name of visible', async () => {
         const user = userEvent.setup();
 
         render(<Accordion title='Title'>

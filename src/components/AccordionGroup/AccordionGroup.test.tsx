@@ -18,5 +18,7 @@ import Accordion from '../Accordion/Accordion';
 
         await screen.findByRole('button');
         await screen.findByText(/Title/i);
+
+        await screen.findByText(/Content/i);
     });
  })

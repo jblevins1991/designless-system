@@ -47,8 +47,8 @@ const Accordion = React.forwardRef<
         controlled: openProp,
         default: false,
         name: 'Accordion'
-    })
-    const button = React.useRef(null);
+    });
+    const button = React.useRef<HTMLButtonElement>(null);
 
     React.useImperativeHandle(ref, () => {
         return {
@@ -62,7 +62,7 @@ const Accordion = React.forwardRef<
                 onChange?.(false);
             },
         }
-    });
+    }, [button]);
 
     React.useEffect(() => {
         onChange?.(open);

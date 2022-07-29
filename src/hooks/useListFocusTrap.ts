@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { FocusableElements } from '../types/compoundElements';
 
-const useListFocusTrap = (
+const useListFocusTrap = <ListItemRef extends FocusableElements>(
     listLength: number,
     returnFocus: () => void,
     escapeKeyCode = 'escape',
@@ -44,9 +45,10 @@ const useListFocusTrap = (
                 }
                 break;
             default:
-                if (!isTrapped) {
+                if (isTrapped) {
                     event.preventDefault();
                 }
+                break;
         }
     };
 

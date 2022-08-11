@@ -5,6 +5,13 @@ interface ErrorProps {
     id: string;
 }
 
+/**
+ * Styless Error Component
+ * 
+ * The styless error component renders a span element. The 
+ * error component is designed mainly for building out custom 
+ * input elements.
+ */
 const Error: React.FC<ErrorProps> = ({
     children,
     id

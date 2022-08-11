@@ -33,7 +33,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
         <OrderedList>
             {
                 crumbs?.map((crumb: Crumb, index: number) => {
-                    return <ListItem>
+                    return <ListItem key={crumb.label}>
                         {
                             index === crumbs.length - 1
                                 ? crumb.label

@@ -22,6 +22,18 @@ interface LinkProps extends AttributeType<HTMLAnchorElement> {
     variant?: 'link' | 'button';
 }
 
+/**
+ * Styless Link Component
+ * 
+ * The link component renders an anchor element. The anchor element 
+ * has two variants associated with it: 'link' and 'button'. The link 
+ * variant is the default variant that will render.
+ * 
+ * Usage:
+ * <Link href='https://example.com'>
+ *   Link Text
+ * </Link>
+ */
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(({
     children,
     className,

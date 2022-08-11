@@ -13,6 +13,19 @@ interface TypographyProps extends AttributeType<TypographyElements> {
     variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 }
 
+/**
+ * The typography component renders the correct element based off of 
+ * the variant prop's value.
+ * 
+ * Usage:
+ * <Typography variant='h1'>
+ *   Main Heading
+ * </Typography>
+ * 
+ * <Typography>
+ *   Body text.
+ * </Typography>
+ */
 const Typography: React.FC<TypographyProps> = ({
     children,
     className,

@@ -51,6 +51,20 @@ interface ButtonProps extends Omit<AttributeType<HTMLButtonElement>, ButtonOmitP
     variant?: 'filled' | 'outlined' | 'text';
 }
 
+/**
+ * Styless Button Component
+ * 
+ * The styless button component renders a button element. The button has a few 
+ * design system props that control how it renders. Color controls the theme 
+ * color of the button, size controls the size of the button, and variant controls 
+ * how it is rendered. The default color is 'primary', the default size is 'medium', 
+ * and the default variant is 'filled'. We also made the default value for prop 'button'.
+ * 
+ * Usage:
+ * <Button>
+ *   Submit
+ * </Button>
+ */
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     children,
     className,

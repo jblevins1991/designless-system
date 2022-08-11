@@ -22,7 +22,7 @@ interface AccordionProps {
 }
 
 type AccordionHandle = {
-    button: React.MutableRefObject<HTMLButtonElement>,
+    button: React.MutableRefObject<HTMLButtonElement>['current'] | null,
     close: () => void,
     open: () => void,
 }
@@ -52,7 +52,7 @@ const Accordion = React.forwardRef<
 
     React.useImperativeHandle(ref, () => {
         return {
-            button,
+            button: button.current,
             close: () => {
                 setOpenIfUncontrolled(false);
                 onChange?.(false);
@@ -65,7 +65,7 @@ const Accordion = React.forwardRef<
     }, [button]);
 
     React.useEffect(() => {
-        onChange?.(open);
+        onChange?.(open || false);
     }, [open]);
 
     const handleBlur = useCreateBlurHandler((event: React.FocusEvent<HTMLButtonElement>) => {

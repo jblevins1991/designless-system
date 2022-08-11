@@ -22,6 +22,17 @@ interface ImageProps extends AttributeType<HTMLImageElement> {
     width: number;
 }
 
+/**
+ * Styless Image Component
+ * 
+ * The styless image component renders a figure, figcaption, and img element. The alt
+ * prop for the Image component is used as the alt attribute value on the img element 
+ * and as the child for the figcaption element. The width and the height is provided 
+ * for core web vitals performance.
+ * 
+ * Usage:
+ * <Image alt='some alt text' src='https://my-img-url' />
+ */
 const Image: React.FC<ImageProps> = ({
     alt,
     className,

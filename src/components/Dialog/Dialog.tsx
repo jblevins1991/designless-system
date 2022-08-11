@@ -9,7 +9,7 @@ import { AttributeType } from '../../types/AttributeType';
 type OmitDialogProps = 'onChange' | 'onClose';
 
 interface DialogProps extends Omit<AttributeType<HTMLDialogElement>, OmitDialogProps> {
-    closeIcon?: React.ReactNode;
+    closeIcon: React.ReactNode;
     defaultOpen?: boolean;
     headerTextVariant?: TypographyProps['variant'];
     onChange?: (open: boolean) => void;
@@ -22,7 +22,7 @@ const Dialog: React.FC<DialogProps> = ({
     children,
     className,
     closeIcon,
-    defaultOpen,
+    defaultOpen = false,
     headerTextVariant = 'h2',
     onChange,
     onClose,
@@ -53,6 +53,7 @@ const Dialog: React.FC<DialogProps> = ({
                 className
             )
         }
+        role='dialog'
     >
         <div className='dialog-header'>
             <Typography variant={headerTextVariant}>

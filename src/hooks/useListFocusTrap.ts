@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { FocusableElements } from '../types/compoundElements';
-
-const useListFocusTrap = <ListItemRef extends FocusableElements>(
+const useListFocusTrap = (
     listLength: number,
     returnFocus: () => void,
     escapeKeyCode = 'escape',
@@ -12,7 +10,7 @@ const useListFocusTrap = <ListItemRef extends FocusableElements>(
 ) => {
     const [isTrapped, setIsTrapped] = React.useState(false);
     const [focusIndex, setFocusIndex] = React.useState(0);
-    const [previousFocusIndex, setPreviousFocusIndex] = React.useState(undefined);
+    const [previousFocusIndex, setPreviousFocusIndex] = React.useState(0);
 
     const handleKeyDown = (event: React.KeyboardEvent) => {        
         const lastFocusableIndex = listLength - 1;

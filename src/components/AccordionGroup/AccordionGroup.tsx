@@ -10,18 +10,19 @@ interface AccordionGroupProps {
 const AccordionGroup: React.FC<AccordionGroupProps> = ({
     children
 }) => {
-    const accordionGroup = React.useRef(null);
+    const accordionGroup = React.useRef<HTMLDivElement>(null);
 
-    const returnFocus = () => accordionGroup.current.focus();
+    const returnFocus = () => {
+    }
 
     const [
         isTrapped,
         setIsTrapped,
-        focusableIndex,
-        setFocusableIndex,
-        handleOnKeyDown,
-        previousFocusableIndex,
-        setPreviousFocuableIndex,
+        focusIndex,
+        setFocusIndex,
+        handleKeyDown,
+        previousFocusIndex,
+        setPreviousFocusIndex
     ] = useListFocusTrap(
         React.Children.count(children),
         returnFocus
@@ -31,37 +32,37 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
     const previousAccordion = React.useRef<AccordionHandle>(null);
 
     React.useEffect(() => {
-        if (isTrapped && activeAccordion.current) {
-            activeAccordion.current.button.current.focus();
+        if (isTrapped && activeAccordion.current !== null) {
+            activeAccordion.current?.button?.focus();
         }
     }, [isTrapped]);
 
     React.useEffect(() => {
-        if (activeAccordion.current?.button.current) {
-           activeAccordion.current.button.current.focus();
+        if (activeAccordion.current !== null) {
+           activeAccordion.current?.button?.focus();
         }
-    }, [focusableIndex]);
+    }, [focusIndex]);
 
     React.useEffect(() => {
         activeAccordion.current?.open();
     }, [
-        focusableIndex
+        focusIndex
     ]);
 
     React.useEffect(() => {
         previousAccordion.current?.close();
     }, [
-        previousFocusableIndex
+        previousFocusIndex
     ]);
 
     const handleOnAccordionClick = async (index: number) => {
-        if (focusableIndex !== index) {
-            await setPreviousFocuableIndex(focusableIndex);
-            await setFocusableIndex(index);
+        if (focusIndex !== index) {
+            await setPreviousFocusIndex(focusIndex);
+            await setFocusIndex(index);
         }
     };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const handleAccordionGroupKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
         console.log('key down')
         switch (event.key) {
             case 'ArrowDown':
@@ -74,7 +75,7 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
     };
 
     return <div
-        onKeyDown={handleKeyDown}
+        onKeyDown={handleAccordionGroupKeyDown}
         tabIndex={0}
     >
         {
@@ -87,9 +88,9 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
                     onClick: () => {
                         handleOnAccordionClick(index);
                     },
-                    onKeyDown: handleOnKeyDown,
-                    ...(index === focusableIndex && { ref: activeAccordion }),
-                    ...(index === previousFocusableIndex && { ref: previousAccordion })
+                    onKeyDown: handleKeyDown,
+                    ...(index === focusIndex && { ref: activeAccordion }),
+                    ...(index === previousFocusIndex && { ref: previousAccordion })
                 });
             })
         }

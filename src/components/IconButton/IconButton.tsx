@@ -10,6 +10,17 @@ interface IconButtonProps extends Omit<ButtonProps, IconButtonPropsToOmit> {
     icon: React.ReactNode;
 }
 
+/**
+ * Styless IconButton Component
+ * 
+ * The icon button component renders our button component with icon rendering 
+ * capabilities. The icon is always rendered before the button text.
+ * 
+ * Usage:
+ * <IconButton icon={TrashIcon}>
+ *   Delete
+ * </IconButton>
+ */
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(({
     'aria-label': ariaLabel,
     className,

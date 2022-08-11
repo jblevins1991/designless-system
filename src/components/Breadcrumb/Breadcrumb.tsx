@@ -21,6 +21,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
     id,
 }) => {
     return <nav
+        aria-label='Breadcrumbs navigation.'
         className={
             classNames(
                 'breadcrumbs',
@@ -31,7 +32,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
     >
         <OrderedList>
             {
-                crumbs.map((crumb: Crumb, index: number) => {
+                crumbs?.map((crumb: Crumb, index: number) => {
                     return <ListItem>
                         {
                             index === crumbs.length - 1

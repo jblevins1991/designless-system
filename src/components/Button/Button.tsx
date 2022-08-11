@@ -8,10 +8,11 @@ import {
 } from '../../hooks';
 
 import { color, size } from '../../types/commonProps';
+import { AttributeType } from '../../types/AttributeType';
 
 type ButtonOmitProps = 'size';
 
-interface ButtonProps extends Omit<React.HTMLAttributes<HTMLButtonElement>, ButtonOmitProps> {
+interface ButtonProps extends Omit<AttributeType<HTMLButtonElement>, ButtonOmitProps> {
     /**
      * The color of the button.
      * 

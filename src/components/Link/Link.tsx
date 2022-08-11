@@ -7,7 +7,9 @@ import {
     useCreateFocusHandler
 } from '../../hooks';
 
-interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
+import { AttributeType } from '../../types/AttributeType';
+
+interface LinkProps extends AttributeType<HTMLAnchorElement> {
     /**
      * A URL to navigate to.
      */

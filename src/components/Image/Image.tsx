@@ -1,7 +1,9 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-interface ImageProps extends React.HTMLAttributes<HTMLImageElement> {
+import { AttributeType } from '../../types/AttributeType';
+
+interface ImageProps extends AttributeType<HTMLImageElement> {
     /**
      * A string containing a description of the image.
      */

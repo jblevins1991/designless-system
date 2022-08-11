@@ -1,8 +1,10 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
+import { AttributeType } from '../../types/AttributeType';
+
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface OrderedListProps extends React.HTMLAttributes<HTMLOListElement> {}
+interface OrderedListProps extends AttributeType<HTMLOListElement> {}
 
 const OrderedList: React.FC<OrderedListProps> = ({
     children,

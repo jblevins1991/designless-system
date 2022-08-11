@@ -2,7 +2,9 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { TypographyElements } from '../../types/compoundElements';
 
-interface TypographyProps extends React.HTMLAttributes<TypographyElements> {
+import { AttributeType } from '../../types/AttributeType';
+
+interface TypographyProps extends AttributeType<TypographyElements> {
     /**
      * Controls the style of the link.
      * 

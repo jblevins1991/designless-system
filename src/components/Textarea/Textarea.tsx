@@ -12,10 +12,13 @@ import {
     useCreateClickHandler,
     useCreateFocusHandler
 } from '../../hooks';
+import Label from '../Label/Label';
+
+import { AttributeType } from '../../types/AttributeType';
 
 type TextareaOmitProps = 'name';
 
-interface TextareaProps extends Omit<React.HTMLAttributes<HTMLTextAreaElement>, TextareaOmitProps> {
+interface TextareaProps extends Omit<AttributeType<HTMLTextAreaElement>, TextareaOmitProps> {
     /**
      * Makes the button non-interactive.
      * 
@@ -87,9 +90,9 @@ const Textarea = React.forwardRef<
     );
 
     return <>
-        <label htmlFor={`${id}-textarea`}>
+        <Label htmlFor={`${id}-textarea`}>
             {label}
-        </label>
+        </Label>
 
         <textarea
             {...props}

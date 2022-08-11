@@ -3,23 +3,30 @@ import * as React from 'react';
 
 import Button, { ButtonProps } from '../Button/Button';
 
-interface IconButtonProps extends ButtonProps {
+type IconButtonPropsToOmit = 'aria-label' | 'children';
+
+interface IconButtonProps extends Omit<ButtonProps, IconButtonPropsToOmit> {
+    'aria-label': string;
     icon: React.ReactNode;
 }
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(({
+    'aria-label': ariaLabel,
     className,
     icon,
+    name,
     ...props
 }, ref) => {
     return <Button
         {...props}
+        aria-label={ariaLabel}
         className={
             classNames(
                 'icon-button',
                 className
             )
         }
+        name={name}
         ref={ref}
     >
         {icon}

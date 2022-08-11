@@ -1,8 +1,10 @@
 import * as React from "react";
 import classNames from "classnames";
 
+import { AttributeType } from '../../types/AttributeType';
+
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface CardProps extends AttributeType<HTMLDivElement> {}
 
 const Card: React.FC<CardProps> = ({
     children,

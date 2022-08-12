@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import { AttributeType } from '../../types/AttributeType';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface LabelProps extends AttributeType<HTMLLabelElement> {}
 
 /**

@@ -5,6 +5,7 @@ import Input, {InputProps} from '../Input/Input';
 
 type OmittedInputProps = 'type';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface CheckboxProps extends Omit<InputProps, OmittedInputProps> {}
 
 const Checkbox = React.forwardRef<

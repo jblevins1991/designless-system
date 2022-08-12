@@ -84,6 +84,7 @@ const Input = React.forwardRef<
                 className={
                     classNames(
                         'input',
+                        variant,
                         className
                     )
                 }

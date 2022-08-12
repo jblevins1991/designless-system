@@ -6,8 +6,9 @@
         "jsx": "react",
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
-        "isolatedModules": true
+        "isolatedModules": true,
+        "strict": true
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*.tsx", "src/**/*.ts"],
     "exclude": ["node_modules", "**/*.stories.tsx", "**/*.test.tsx"]
 }

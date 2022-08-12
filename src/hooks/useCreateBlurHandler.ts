@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 const useCreateBlurHandler = <ElementType>(
-    onBlur: (event: React.FocusEvent<ElementType>) => void,
-    disabled: boolean
+    disabled: boolean,
+    onBlur?: (event: React.FocusEvent<ElementType>) => void
 ) => {
     return (event: React.FocusEvent<ElementType>) => {
         if (disabled) return;

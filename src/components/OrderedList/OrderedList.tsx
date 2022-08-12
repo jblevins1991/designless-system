@@ -1,9 +1,22 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface OrderedListProps extends React.HTMLAttributes<HTMLOListElement> {}
+import { AttributeType } from '../../types/AttributeType';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface OrderedListProps extends AttributeType<HTMLOListElement> {}
+
+/**
+ * Styless OrderedList Component
+ * 
+ * The styless ordered list component renders a ol element.
+ * 
+ * Usage:
+ * <OrderedList>
+ *   <ListItem>one</ListItem>
+ *   ...more list items
+ * </OrderedList>
+ */
 const OrderedList: React.FC<OrderedListProps> = ({
     children,
     className,

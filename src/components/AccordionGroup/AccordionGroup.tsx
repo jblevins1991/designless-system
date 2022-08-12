@@ -44,7 +44,6 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
     }, [focusIndex]);
 
     React.useEffect(() => {
-        console.log('on');
         activeAccordion.current?.open();
     }, [
         activeAccordion.current
@@ -64,10 +63,8 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
     };
 
     const handleAccordionGroupKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-        console.log('key down')
         switch (event.key) {
             case 'ArrowDown':
-                console.log('arrow down')
                 setIsTrapped(true);
                 break;
             default:

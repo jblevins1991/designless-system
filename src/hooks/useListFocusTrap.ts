@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 const useListFocusTrap = (
     listLength: number,
     returnFocus: () => void,
@@ -15,7 +16,9 @@ const useListFocusTrap = (
     const handleKeyDown = (event: React.KeyboardEvent) => {        
         const lastFocusableIndex = listLength - 1;
 
-        setPreviousFocusIndex(focusIndex);
+        if (focusIndex) {
+            setPreviousFocusIndex(focusIndex);
+        }
 
         switch(event.code) {
             case escapeKeyCode:
@@ -50,7 +53,7 @@ const useListFocusTrap = (
         }
     };
 
-    return [
+    return {
         isTrapped,
         setIsTrapped,
         focusIndex,
@@ -58,7 +61,7 @@ const useListFocusTrap = (
         handleKeyDown,
         previousFocusIndex,
         setPreviousFocusIndex
-    ];
+    };
 };
 
 export default useListFocusTrap;

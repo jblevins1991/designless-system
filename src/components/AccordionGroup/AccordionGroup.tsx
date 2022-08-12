@@ -15,7 +15,7 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
     const returnFocus = () => {
     }
 
-    const [
+    const {
         isTrapped,
         setIsTrapped,
         focusIndex,
@@ -23,7 +23,7 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
         handleKeyDown,
         previousFocusIndex,
         setPreviousFocusIndex
-    ] = useListFocusTrap(
+    } = useListFocusTrap(
         React.Children.count(children),
         returnFocus
     );
@@ -44,15 +44,16 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
     }, [focusIndex]);
 
     React.useEffect(() => {
+        console.log('on');
         activeAccordion.current?.open();
     }, [
-        focusIndex
+        activeAccordion.current
     ]);
 
     React.useEffect(() => {
         previousAccordion.current?.close();
     }, [
-        previousFocusIndex
+        previousAccordion.current
     ]);
 
     const handleOnAccordionClick = async (index: number) => {

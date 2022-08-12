@@ -7,19 +7,40 @@ import {
 } from '..';
 
 import {
+    useControlled,
     useCreateBlurHandler,
     useCreateChangeHandler,
     useCreateClickHandler,
     useCreateFocusHandler
 } from '../../hooks';
+import Label from '../Label/Label';
+
+import { AttributeType } from '../../types/AttributeType';
 
 type TextareaOmitProps = 'name';
 
-interface TextareaProps extends Omit<React.HTMLAttributes<HTMLTextAreaElement>, TextareaOmitProps> {
+interface TextareaProps extends Omit<AttributeType<HTMLTextAreaElement>, TextareaOmitProps> {
+    /**
+     * Makes the button non-interactive.
+     * 
+     * Default value: false
+     */
     disabled?: boolean;
+    /**
+     * A string representing the error text.
+     */
     error?: string;
+    /**
+     * A string representing the hint text.
+     */
     hint?: string;
+    /**
+     * A string representing the label text.
+     */
     label: string;
+    /**
+     * The name of the textarea component.
+     */
     name: string;
 }
 
@@ -28,6 +49,7 @@ const Textarea = React.forwardRef<
     TextareaProps
 >(({
     className,
+    defaultValue,
     disabled = false,
     error,
     hint,
@@ -37,43 +59,36 @@ const Textarea = React.forwardRef<
     onChange,
     onClick,
     onFocus,
+    value: valueProp,
     ...props
 }, ref) => {
-    console.log('disabled', disabled);
     const id = React.useId();
 
-    const handleBlur = useCreateBlurHandler(
-        (event: React.FocusEvent<HTMLTextAreaElement>) => {
-            onBlur?.(event);
-        },
-        disabled
-    );
+    const [value, setValueIfUndefined] = useControlled({
+        controlled: valueProp,
+        default: defaultValue,
+        name: 'Textarea'
+    })
+    
+    const handleBlur = useCreateBlurHandler<HTMLTextAreaElement>(disabled, onBlur);
 
     const handleChange = useCreateChangeHandler(
+        disabled,
         (event: React.ChangeEvent<HTMLTextAreaElement>) => {
             onChange?.(event);
-        },
-        disabled
+
+            setValueIfUndefined(event.currentTarget.value);
+        }
     );
 
-    const handleClick = useCreateClickHandler(
-        (event: React.MouseEvent<HTMLTextAreaElement>) => {
-            onClick?.(event);
-        },
-        disabled
-    );
-
-    const handleFocus = useCreateFocusHandler(
-        (event: React.FocusEvent<HTMLTextAreaElement>) => {
-            onFocus?.(event);
-        },
-        disabled
-    );
+    const handleClick = useCreateClickHandler<HTMLTextAreaElement>(disabled, onClick);
+    
+    const handleFocus = useCreateFocusHandler<HTMLTextAreaElement>(disabled, onFocus);
 
     return <>
-        <label htmlFor={`${id}-textarea`}>
+        <Label htmlFor={`${id}-textarea`}>
             {label}
-        </label>
+        </Label>
 
         <textarea
             {...props}

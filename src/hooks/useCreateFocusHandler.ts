@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 const useCreateFocusHandler = <ElementType>(
-    onFocus: (event: React.FocusEvent<ElementType>) => void,
-    disabled: boolean
+    disabled = false,
+    onFocus?: (event: React.FocusEvent<ElementType>) => void
 ) => {
     return (event: React.FocusEvent<ElementType>) => {
         if (disabled) return;

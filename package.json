@@ -13,6 +13,10 @@
   "engines": {
     "node": ">=16.0.0"
   },
+  "keywords": [
+    "component library",
+    "design system"
+  ],
   "engineStrict": true,
   "author": "Joshua Blevins <josh.adam.blevins@gmail.com>",
   "license": "MIT",

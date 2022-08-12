@@ -75,28 +75,28 @@ const Input = React.forwardRef<
     return <>
         <label htmlFor={`${id}-input`}>
             {label}
-        </label>
 
-        <input
-            {...props}
-            aria-describedby={`${id}-hint`}
-            aria-errormessage={`${id}-error`}
-            aria-invalid={!!error}
-            className={
-                classNames(
-                    'input',
-                    className
-                )
-            }
-            id={`${id}-input`}
-            name={name}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            placeholder={placeholder}
-            value={value}
-            ref={ref}
-        />
+            <input
+                {...props}
+                aria-describedby={`${id}-hint`}
+                aria-errormessage={`${id}-error`}
+                aria-invalid={!!error}
+                className={
+                    classNames(
+                        'input',
+                        className
+                    )
+                }
+                id={`${id}-input`}
+                name={name}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                placeholder={placeholder}
+                value={value}
+                ref={ref}
+            />
+        </label>
 
         {hint && <Hint id={`${id}-hint`}>
             {hint}

@@ -95,4 +95,10 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({
     </div>
 };
 
+AccordionGroup.displayName = 'AccordionGroup';
+
+export type {
+    AccordionGroupProps
+};
+
 export default AccordionGroup;

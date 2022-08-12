@@ -44,6 +44,8 @@ const Fieldset: React.FC<FieldsetProps> = ({
     </fieldset>;
 };
 
+Fieldset.displayName = 'Fieldset';
+
 export type {
     FieldsetProps
 };

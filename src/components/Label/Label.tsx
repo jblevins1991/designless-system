@@ -32,6 +32,8 @@ const Label: React.FC<LabelProps> = ({
     </label>;
 };
 
+Label.displayName = 'Label';
+
 export type {
     LabelProps
 };

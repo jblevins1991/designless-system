@@ -73,6 +73,8 @@ const Dialog: React.FC<DialogProps> = ({
     </dialog>;
 };
 
+Dialog.displayName = 'Dialog';
+
 export type {
     DialogProps
 };

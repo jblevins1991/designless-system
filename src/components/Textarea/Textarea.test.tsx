@@ -1,203 +1,195 @@
 /**
  * @jest-environment jsdom
  */
- import * as React from 'react';
- import { render, screen } from '@testing-library/react';
- import userEvent from '@testing-library/user-event';
- 
- import Textarea from './Textarea';
+import * as React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
- const eventHandlers = {
-    onBlur: () => {},
-    onChange: () => {},
-    onClick: () => {},
-    onFocus: () => {}
- }
+import Textarea from './Textarea';
 
- describe('Textarea Component', () => {
-    afterEach(() => {
-        jest.clearAllMocks();
-    });
-    
-    it('should render', async () => {
-        render(<Textarea label='Test' name='test' />);
+const eventHandlers = {
+  onBlur: () => {},
+  onChange: () => {},
+  onClick: () => {},
+  onFocus: () => {}
+};
 
-        expect(screen.getByRole('textbox')).toBeInTheDocument();
-    });     
+describe('Textarea Component', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
-    it('should contain an accessible label', () => {
-        render(<Textarea label='Test' name='test' />);
+  it('should render', async () => {
+    render(<Textarea label="Test" name="test" />);
 
-        expect(screen.getByLabelText('Test')).toBeInTheDocument();
-    });
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
+  });
 
-    it('should render an accessible hint', () => {
-        render(<Textarea label='Test' hint='Try something' name='test' />);
+  it('should contain an accessible label', () => {
+    render(<Textarea label="Test" name="test" />);
 
-        const input = screen.getByLabelText('Test');
-        const hint = screen.getByText('Try something');
+    expect(screen.getByLabelText('Test')).toBeInTheDocument();
+  });
 
-        expect(hint).toBeInTheDocument();
-        expect(input.getAttribute('aria-describedby')).toEqual(hint.getAttribute('id'));
-    });
+  it('should render an accessible hint', () => {
+    render(<Textarea label="Test" hint="Try something" name="test" />);
 
-    it('should render an accessible error', () => {
-        render(<Textarea label='Test' error='Error text' name='test' />);
+    const input = screen.getByLabelText('Test');
+    const hint = screen.getByText('Try something');
 
-        const input = screen.getByLabelText('Test');
-        const error = screen.getByText('Error text');
+    expect(hint).toBeInTheDocument();
+    expect(input.getAttribute('aria-describedby')).toEqual(
+      hint.getAttribute('id')
+    );
+  });
 
-        expect(error).toBeInTheDocument();
-        expect(input.getAttribute('aria-errormessage')).toEqual(error.getAttribute('id'));
-    });
+  it('should render an accessible error', () => {
+    render(<Textarea label="Test" error="Error text" name="test" />);
 
-    it('should focus the input when the label is clicked', async () => {
-        const user = userEvent.setup();
+    const input = screen.getByLabelText('Test');
+    const error = screen.getByText('Error text');
 
-        render(<Textarea
-            label='Test'
-            onBlur={eventHandlers.onBlur}
-            name='test'
-        />);
+    expect(error).toBeInTheDocument();
+    expect(input.getAttribute('aria-errormessage')).toEqual(
+      error.getAttribute('id')
+    );
+  });
 
-        await user.click(screen.getByText('Test'));
+  it('should focus the input when the label is clicked', async () => {
+    const user = userEvent.setup();
 
-        expect(screen.getByLabelText('Test')).toHaveFocus();
-    });
+    render(<Textarea label="Test" onBlur={eventHandlers.onBlur} name="test" />);
 
-    it('should fire the `onBlur` event handler', async () => {
-        const user = userEvent.setup();
-        const spy = jest.spyOn(eventHandlers, 'onBlur');
+    await user.click(screen.getByText('Test'));
 
-        render(<Textarea
-            label='Test'
-            onBlur={eventHandlers.onBlur}
-            name='test'
-        />);
+    expect(screen.getByLabelText('Test')).toHaveFocus();
+  });
 
-        await user.tab();
-        await user.tab();
+  it('should fire the `onBlur` event handler', async () => {
+    const user = userEvent.setup();
+    const spy = jest.spyOn(eventHandlers, 'onBlur');
 
-        expect(spy).toHaveBeenCalledTimes(1);
-    });
+    render(<Textarea label="Test" onBlur={eventHandlers.onBlur} name="test" />);
 
-    it('should fire the `onClick` event handler', async () => {
-        const user = userEvent.setup();
-        const spy = jest.spyOn(eventHandlers, 'onClick');
+    await user.tab();
+    await user.tab();
 
-        render(<Textarea
-            label='Test'
-            onClick={eventHandlers.onClick}
-            name='test'
-        />);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 
-        await user.click(screen.getByRole('textbox'));
+  it('should fire the `onClick` event handler', async () => {
+    const user = userEvent.setup();
+    const spy = jest.spyOn(eventHandlers, 'onClick');
 
-        expect(spy).toHaveBeenCalledTimes(1);
-    });
+    render(
+      <Textarea label="Test" onClick={eventHandlers.onClick} name="test" />
+    );
 
-    it('should fire the `onChange` event handler', async () => {
-        const user = userEvent.setup();
-        const spy = jest.spyOn(eventHandlers, 'onChange');
+    await user.click(screen.getByRole('textbox'));
 
-        const changedValue = 'something';
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 
-        render(<Textarea
-            label='Test'
-            onChange={eventHandlers.onChange}
-            name='test'
-        />);
+  it('should fire the `onChange` event handler', async () => {
+    const user = userEvent.setup();
+    const spy = jest.spyOn(eventHandlers, 'onChange');
 
-        await user.type(
-            screen.getByLabelText('Test'),
-            changedValue
-        );
+    const changedValue = 'something';
 
-        expect(spy).toHaveBeenCalledTimes(changedValue.length);
-    });
+    render(
+      <Textarea label="Test" onChange={eventHandlers.onChange} name="test" />
+    );
 
-    it('should fire the `onFocus` event handler', async () => {
-        const user = userEvent.setup();
-        const spy = jest.spyOn(eventHandlers, 'onFocus');
+    await user.type(screen.getByLabelText('Test'), changedValue);
 
-        render(<Textarea
-            label='Test'
-            onFocus={eventHandlers.onFocus}
-            name='test'
-        />);
+    expect(spy).toHaveBeenCalledTimes(changedValue.length);
+  });
 
-        await user.tab();
+  it('should fire the `onFocus` event handler', async () => {
+    const user = userEvent.setup();
+    const spy = jest.spyOn(eventHandlers, 'onFocus');
 
-        expect(spy).toHaveBeenCalledTimes(1);
-    });
+    render(
+      <Textarea label="Test" onFocus={eventHandlers.onFocus} name="test" />
+    );
 
-    it('should not fire the `onBlur` event handler when disabled', async () => {
-        const user = userEvent.setup();
-        const spy = jest.spyOn(eventHandlers, 'onBlur');
+    await user.tab();
 
-        render(<Textarea
-            disabled={true}
-            label='Test'
-            onBlur={eventHandlers.onBlur}
-            name='test'
-        />);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 
-        await user.tab();
-        await user.tab();
+  it('should not fire the `onBlur` event handler when disabled', async () => {
+    const user = userEvent.setup();
+    const spy = jest.spyOn(eventHandlers, 'onBlur');
 
-        expect(spy).toHaveBeenCalledTimes(0);
-    });
+    render(
+      <Textarea
+        disabled={true}
+        label="Test"
+        onBlur={eventHandlers.onBlur}
+        name="test"
+      />
+    );
 
-    it('should not fire the `onClick` event handler when disabled', async () => {
-        const user = userEvent.setup();
-        const spy = jest.spyOn(eventHandlers, 'onClick');
+    await user.tab();
+    await user.tab();
 
-        render(<Textarea
-            disabled={true}
-            label='Test'
-            onClick={eventHandlers.onClick}
-            name='test'
-        />);
+    expect(spy).toHaveBeenCalledTimes(0);
+  });
 
-        await user.click(screen.getByRole('textbox'));
+  it('should not fire the `onClick` event handler when disabled', async () => {
+    const user = userEvent.setup();
+    const spy = jest.spyOn(eventHandlers, 'onClick');
 
-        expect(spy).toHaveBeenCalledTimes(0);
-    });
+    render(
+      <Textarea
+        disabled={true}
+        label="Test"
+        onClick={eventHandlers.onClick}
+        name="test"
+      />
+    );
 
-    it('should not fire the `onChange` event handler when disabled', async () => {
-        const user = userEvent.setup();
-        const spy = jest.spyOn(eventHandlers, 'onChange');
+    await user.click(screen.getByRole('textbox'));
 
-        const changedValue = 'something';
+    expect(spy).toHaveBeenCalledTimes(0);
+  });
 
-        render(<Textarea
-            disabled={true}
-            label='Test'
-            onChange={eventHandlers.onChange}
-            name='test'
-        />);
+  it('should not fire the `onChange` event handler when disabled', async () => {
+    const user = userEvent.setup();
+    const spy = jest.spyOn(eventHandlers, 'onChange');
 
-        await user.type(
-            screen.getByLabelText('Test'),
-            changedValue
-        );
+    const changedValue = 'something';
 
-        expect(spy).toHaveBeenCalledTimes(0);
-    });
+    render(
+      <Textarea
+        disabled={true}
+        label="Test"
+        onChange={eventHandlers.onChange}
+        name="test"
+      />
+    );
 
-    it('should not fire the `onFocus` event handler when disabled', async () => {
-        const user = userEvent.setup();
-        const spy = jest.spyOn(eventHandlers, 'onFocus');
+    await user.type(screen.getByLabelText('Test'), changedValue);
 
-        render(<Textarea
-            disabled={true}
-            label='Test'
-            onFocus={eventHandlers.onFocus}
-            name='test'
-        />);
+    expect(spy).toHaveBeenCalledTimes(0);
+  });
 
-        await user.tab();
+  it('should not fire the `onFocus` event handler when disabled', async () => {
+    const user = userEvent.setup();
+    const spy = jest.spyOn(eventHandlers, 'onFocus');
 
-        expect(spy).toHaveBeenCalledTimes(0);
-    });
- });
+    render(
+      <Textarea
+        disabled={true}
+        label="Test"
+        onFocus={eventHandlers.onFocus}
+        name="test"
+      />
+    );
+
+    await user.tab();
+
+    expect(spy).toHaveBeenCalledTimes(0);
+  });
+});

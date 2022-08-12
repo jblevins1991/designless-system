@@ -1,34 +1,26 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-import Input, {InputProps} from '../Input/Input';
+import Input, { InputProps } from '../Input/Input';
 
 type OmittedInputProps = 'type';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface EmailProps extends Omit<InputProps, OmittedInputProps> {}
 
-const Email = React.forwardRef<
-    HTMLInputElement,
-    EmailProps
->((props, ref) => {
-    return <Input
-        {...props}
-        className={
-            classNames(
-                'email',
-                props.className
-            )
-        }
-        type='email'
-        ref={ref}
-    />;
+const Email = React.forwardRef<HTMLInputElement, EmailProps>((props, ref) => {
+  return (
+    <Input
+      {...props}
+      className={classNames('email', props.className)}
+      type="email"
+      ref={ref}
+    />
+  );
 });
 
 Email.displayName = 'Email';
 
-export type {
-    EmailProps
-};
+export type { EmailProps };
 
 export default Email;

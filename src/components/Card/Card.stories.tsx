@@ -1,14 +1,12 @@
 import * as React from 'react';
 
-import Card from "./Card";
+import Card from './Card';
 
 export default {
-    title: 'Components/Card',
-    component: Card
+  title: 'Components/Card',
+  component: Card
 };
 
 export const DefualtCard = () => {
-    return <Card>
-        Click me
-    </Card>
-}
+  return <Card>Click me</Card>;
+};

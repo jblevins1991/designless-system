@@ -8,195 +8,174 @@ import userEvent from '@testing-library/user-event';
 import Button from './Button';
 
 const eventHandlers = {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-    onBlur: (event: React.FocusEvent<HTMLButtonElement>) => {},
-    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-    onClick: (event: React.MouseEvent<HTMLButtonElement>) => {},
-    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-    onFocus: (event: React.FocusEvent<HTMLButtonElement>) => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+  onBlur: (event: React.FocusEvent<HTMLButtonElement>) => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+  onFocus: (event: React.FocusEvent<HTMLButtonElement>) => {}
 };
 
 describe('Button Component', () => {
-    afterEach(() => {
-        jest.clearAllMocks();
-    });
-    
-    it('should render', () => {
-        render(<Button>Test</Button>);
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
-        expect(screen.getByRole('button')).toBeInTheDocument();
-    });
+  it('should render', () => {
+    render(<Button>Test</Button>);
 
-    it('should be a filled, primary, medium sized button by default', () => {
-        render(<Button>Test</Button>);
+    expect(screen.getByRole('button')).toBeInTheDocument();
+  });
 
-        expect(screen.getByRole('button').classList).toContain('filled');
-        expect(screen.getByRole('button').classList).toContain('primary');
-        expect(screen.getByRole('button').classList).toContain('medium');
-    });
+  it('should be a filled, primary, medium sized button by default', () => {
+    render(<Button>Test</Button>);
 
-    it('should be a secondary button', () => {
-        render(<Button color='secondary'>Test</Button>);
+    expect(screen.getByRole('button').classList).toContain('filled');
+    expect(screen.getByRole('button').classList).toContain('primary');
+    expect(screen.getByRole('button').classList).toContain('medium');
+  });
 
-        expect(screen.getByRole('button').classList).toContain('secondary');
-    });
+  it('should be a secondary button', () => {
+    render(<Button color="secondary">Test</Button>);
 
-    it('should be a tertiary button', () => {
-        render(<Button color='tertiary'>Test</Button>);
+    expect(screen.getByRole('button').classList).toContain('secondary');
+  });
 
-        expect(screen.getByRole('button').classList).toContain('tertiary');
-    });
+  it('should be a tertiary button', () => {
+    render(<Button color="tertiary">Test</Button>);
 
-    it('should be a small button', async () => {
-        render(<Button size='small'>Test</Button>);
+    expect(screen.getByRole('button').classList).toContain('tertiary');
+  });
 
-        expect(screen.getByRole('button').classList).toContain('small');
-    });
+  it('should be a small button', async () => {
+    render(<Button size="small">Test</Button>);
 
-    it('should be a large button', async () => {
-        render(<Button size='large'>Test</Button>);
+    expect(screen.getByRole('button').classList).toContain('small');
+  });
 
-        expect(screen.getByRole('button').classList).toContain('large');
-    });
+  it('should be a large button', async () => {
+    render(<Button size="large">Test</Button>);
 
-    it('should be an outlined button', () => {
-        render(<Button variant='outlined'>Test</Button>);
+    expect(screen.getByRole('button').classList).toContain('large');
+  });
 
-        expect(screen.getByRole('button').classList).toContain('outlined');
-    });
+  it('should be an outlined button', () => {
+    render(<Button variant="outlined">Test</Button>);
 
-    it('should be an text button', () => {
-        render(<Button variant='text'>Test</Button>);
+    expect(screen.getByRole('button').classList).toContain('outlined');
+  });
 
-        expect(screen.getByRole('button').classList).toContain('text');
-    });
+  it('should be an text button', () => {
+    render(<Button variant="text">Test</Button>);
 
-    it('should be a small button', async () => {
-        render(<Button size='small'>Test</Button>);
+    expect(screen.getByRole('button').classList).toContain('text');
+  });
 
-        expect(screen.getByRole('button').classList).toContain('small');
-    });
+  it('should be a small button', async () => {
+    render(<Button size="small">Test</Button>);
 
-    it('should focus the button when the user tabs into it', async () => {
-        const user = userEvent.setup();
-        const eventSpy = jest.spyOn(eventHandlers, 'onFocus');
+    expect(screen.getByRole('button').classList).toContain('small');
+  });
 
-        render(<Button
-            onFocus={eventHandlers.onFocus}
-        >
-            Test
-        </Button>);
+  it('should focus the button when the user tabs into it', async () => {
+    const user = userEvent.setup();
+    const eventSpy = jest.spyOn(eventHandlers, 'onFocus');
 
-        user.tab();
+    render(<Button onFocus={eventHandlers.onFocus}>Test</Button>);
 
-        expect(eventSpy).toHaveBeenCalledTimes(1);
-    });
+    user.tab();
 
-    it('should not focus the button when button is disabled', async () => {
-        const user = userEvent.setup();
+    expect(eventSpy).toHaveBeenCalledTimes(1);
+  });
 
-        render(<Button disabled>
-            Test
-        </Button>);
+  it('should not focus the button when button is disabled', async () => {
+    const user = userEvent.setup();
 
-        await user.tab();
+    render(<Button disabled>Test</Button>);
 
-        expect(await screen.findByRole('button')).not.toHaveFocus();
-    });
+    await user.tab();
 
-    it('should fire the `onBlur` handler when the user tabs away', async () => {
-        const user = userEvent.setup();
-        const eventSpy = jest.spyOn(eventHandlers, 'onBlur');
+    expect(await screen.findByRole('button')).not.toHaveFocus();
+  });
 
-        render(<Button
-            onBlur={eventHandlers.onBlur}
-        >
-            Test
-        </Button>);
+  it('should fire the `onBlur` handler when the user tabs away', async () => {
+    const user = userEvent.setup();
+    const eventSpy = jest.spyOn(eventHandlers, 'onBlur');
 
-        await user.tab();
-        await user.tab();
+    render(<Button onBlur={eventHandlers.onBlur}>Test</Button>);
 
-        expect(eventSpy).toHaveBeenCalledTimes(1);
-    });
+    await user.tab();
+    await user.tab();
 
-    it('should fire the `onClick` handler when the user clicks on it', async () => {
-        const user = userEvent.setup();
-        const eventSpy = jest.spyOn(eventHandlers, 'onClick');
+    expect(eventSpy).toHaveBeenCalledTimes(1);
+  });
 
-        render(<Button
-            onClick={eventHandlers.onClick}
-        >
-            Test
-        </Button>);
+  it('should fire the `onClick` handler when the user clicks on it', async () => {
+    const user = userEvent.setup();
+    const eventSpy = jest.spyOn(eventHandlers, 'onClick');
 
-        await user.click(screen.getByRole('button'));
+    render(<Button onClick={eventHandlers.onClick}>Test</Button>);
 
-        expect(eventSpy).toHaveBeenCalledTimes(1);
-    });
+    await user.click(screen.getByRole('button'));
 
-    it('should fire the `onClick` handler when the user presses the enter button', async () => {
-        const user = userEvent.setup();
-        const eventSpy = jest.spyOn(eventHandlers, 'onClick');
+    expect(eventSpy).toHaveBeenCalledTimes(1);
+  });
 
-        render(<Button
-            onClick={eventHandlers.onClick}
-        >
-            Test
-        </Button>);
+  it('should fire the `onClick` handler when the user presses the enter button', async () => {
+    const user = userEvent.setup();
+    const eventSpy = jest.spyOn(eventHandlers, 'onClick');
 
-        await user.tab();
-        await user.keyboard('{Enter}');
+    render(<Button onClick={eventHandlers.onClick}>Test</Button>);
 
-        expect(eventSpy).toHaveBeenCalledTimes(1);
-    });
+    await user.tab();
+    await user.keyboard('{Enter}');
 
-    it('should not fire the `onClick` handler when button is disabled', async () => {
-        const user = userEvent.setup();
-        const eventSpy = jest.spyOn(eventHandlers, 'onClick');
+    expect(eventSpy).toHaveBeenCalledTimes(1);
+  });
 
-        render(<Button
-            onClick={eventHandlers.onClick}
-            disabled={true}
-        >
-            Test
-        </Button>);
+  it('should not fire the `onClick` handler when button is disabled', async () => {
+    const user = userEvent.setup();
+    const eventSpy = jest.spyOn(eventHandlers, 'onClick');
 
-        await user.click(screen.getByRole('button'));
+    render(
+      <Button onClick={eventHandlers.onClick} disabled={true}>
+        Test
+      </Button>
+    );
 
-        expect(eventSpy).toHaveBeenCalledTimes(0);
-    });
+    await user.click(screen.getByRole('button'));
 
-    it('should not fire the `onFocus` handler when button is disabled', async () => {
-        const user = userEvent.setup();
-        const eventSpy = jest.spyOn(eventHandlers, 'onFocus');
+    expect(eventSpy).toHaveBeenCalledTimes(0);
+  });
 
-        render(<Button
-            onFocus={eventHandlers.onFocus}
-            disabled={true}
-        >
-            Test
-        </Button>);
+  it('should not fire the `onFocus` handler when button is disabled', async () => {
+    const user = userEvent.setup();
+    const eventSpy = jest.spyOn(eventHandlers, 'onFocus');
 
-        await user.tab();
+    render(
+      <Button onFocus={eventHandlers.onFocus} disabled={true}>
+        Test
+      </Button>
+    );
 
-        expect(eventSpy).toHaveBeenCalledTimes(0);
-    });
+    await user.tab();
 
-    it('should not fire the `onBlur` handler when button is disabled', async () => {
-        const user = userEvent.setup();
-        const eventSpy = jest.spyOn(eventHandlers, 'onBlur');
+    expect(eventSpy).toHaveBeenCalledTimes(0);
+  });
 
-        render(<Button
-            onBlur={eventHandlers.onBlur}
-            disabled
-        >
-            Test
-        </Button>);
+  it('should not fire the `onBlur` handler when button is disabled', async () => {
+    const user = userEvent.setup();
+    const eventSpy = jest.spyOn(eventHandlers, 'onBlur');
 
-        await user.tab();
-        await user.tab();
+    render(
+      <Button onBlur={eventHandlers.onBlur} disabled>
+        Test
+      </Button>
+    );
 
-        expect(eventSpy).toHaveBeenCalledTimes(0);
-    });
+    await user.tab();
+    await user.tab();
+
+    expect(eventSpy).toHaveBeenCalledTimes(0);
+  });
 });

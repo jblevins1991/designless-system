@@ -1,105 +1,102 @@
 /**
  * @jest-environment jsdom
  */
- import * as React from 'react';
- import { render, screen } from '@testing-library/react';
- import userEvent from '@testing-library/user-event';
- 
- import Link from './Link';
+import * as React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
- const eventHandlers = {
-     // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-     onBlur: (event: React.FocusEvent<HTMLAnchorElement>) => {},
-     // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-     onClick: (event: React.MouseEvent<HTMLAnchorElement>) => {},
-     // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-     onFocus: (event: React.FocusEvent<HTMLAnchorElement>) => {},
- };
+import Link from './Link';
 
- describe('Link Component', () => {
-    it('should render', async () => {
-        render(<Link href='https://www.google.com'>Google</Link>);
+const eventHandlers = {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+  onBlur: (event: React.FocusEvent<HTMLAnchorElement>) => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+  onClick: (event: React.MouseEvent<HTMLAnchorElement>) => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+  onFocus: (event: React.FocusEvent<HTMLAnchorElement>) => {}
+};
 
-        expect(screen.getByRole('link')).toBeInTheDocument();
-    });
+describe('Link Component', () => {
+  it('should render', async () => {
+    render(<Link href="https://www.google.com">Google</Link>);
 
-    it('should render with http urls', async () => {
-        render(<Link href='http://www.google.com'>Google</Link>);
+    expect(screen.getByRole('link')).toBeInTheDocument();
+  });
 
-        expect(screen.getByRole('link')).toBeInTheDocument();
-    });
+  it('should render with http urls', async () => {
+    render(<Link href="http://www.google.com">Google</Link>);
 
-    it('should contain the link class', () => {
-        render(<Link href='https://www.google.com'>Google</Link>);
+    expect(screen.getByRole('link')).toBeInTheDocument();
+  });
 
-        expect(screen.getByRole('link').classList).toContain('link');
-    });
+  it('should contain the link class', () => {
+    render(<Link href="https://www.google.com">Google</Link>);
 
-    it('should contain the link class', () => {
-        render(<Link variant='button' href='https://www.google.com'>Google</Link>);
+    expect(screen.getByRole('link').classList).toContain('link');
+  });
 
-        expect(screen.getByRole('link').classList).toContain('link');
-        expect(screen.getByRole('link').classList).toContain('button');
-    });
+  it('should contain the link class', () => {
+    render(
+      <Link variant="button" href="https://www.google.com">
+        Google
+      </Link>
+    );
 
-    it('should focus the button when the user tabs out of it', async () => {
-        const user = userEvent.setup();
-        const eventSpy = jest.spyOn(eventHandlers, 'onFocus');
+    expect(screen.getByRole('link').classList).toContain('link');
+    expect(screen.getByRole('link').classList).toContain('button');
+  });
 
-        render(<Link
-            href={'https://www.google.com'}
-            onFocus={eventHandlers.onFocus}
-        >
-            Test
-        </Link>);
+  it('should focus the button when the user tabs out of it', async () => {
+    const user = userEvent.setup();
+    const eventSpy = jest.spyOn(eventHandlers, 'onFocus');
 
-        await user.tab();
+    render(
+      <Link href={'https://www.google.com'} onFocus={eventHandlers.onFocus}>
+        Test
+      </Link>
+    );
 
-        expect(eventSpy).toHaveBeenCalledTimes(1);
-    });
+    await user.tab();
 
-    it('should blur the button when the user tabs out of it', async () => {
-        const user = userEvent.setup();
-        const eventSpy = jest.spyOn(eventHandlers, 'onBlur');
+    expect(eventSpy).toHaveBeenCalledTimes(1);
+  });
 
-        render(<Link
-            href={'https://www.google.com'}
-            onBlur={eventHandlers.onBlur}
-        >
-            Test
-        </Link>);
+  it('should blur the button when the user tabs out of it', async () => {
+    const user = userEvent.setup();
+    const eventSpy = jest.spyOn(eventHandlers, 'onBlur');
 
-        await user.tab();
-        await user.tab();
+    render(
+      <Link href={'https://www.google.com'} onBlur={eventHandlers.onBlur}>
+        Test
+      </Link>
+    );
 
-        expect(eventSpy).toHaveBeenCalledTimes(1);
-    });
+    await user.tab();
+    await user.tab();
 
-    it('should fire the on click event when the user clicks on it', async () => {
-        const user = userEvent.setup();
-        const eventSpy = jest.spyOn(eventHandlers, 'onClick');
+    expect(eventSpy).toHaveBeenCalledTimes(1);
+  });
 
-        render(<Link
-            href={'https://www.google.com'}
-            onClick={eventHandlers.onClick}
-        >
-            Test
-        </Link>);
+  it('should fire the on click event when the user clicks on it', async () => {
+    const user = userEvent.setup();
+    const eventSpy = jest.spyOn(eventHandlers, 'onClick');
 
-        await user.click(screen.getByRole('link'));
+    render(
+      <Link href={'https://www.google.com'} onClick={eventHandlers.onClick}>
+        Test
+      </Link>
+    );
 
-        expect(eventSpy).toHaveBeenCalledTimes(1);
-    });
+    await user.click(screen.getByRole('link'));
 
-    it('should emit a console.error if no protocol is provided', async () => {
-        const consoleSpy = jest.spyOn(console, 'error');
+    expect(eventSpy).toHaveBeenCalledTimes(1);
+  });
 
-        render(<Link
-            href={'www.google.com'}
-        >
-            Test
-        </Link>);
+  it('should emit a console.error if no protocol is provided', async () => {
+    const consoleSpy = jest.spyOn(console, 'error');
 
-        expect(consoleSpy).toHaveBeenCalledTimes(1);
-    });
- });
+    render(<Link href={'www.google.com'}>Test</Link>);
+
+    expect(consoleSpy).toHaveBeenCalledTimes(1);
+  });
+});

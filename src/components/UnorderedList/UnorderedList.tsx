@@ -8,9 +8,9 @@ interface UnorderedListProps extends AttributeType<HTMLUListElement> {}
 
 /**
  * Styless UnorderedList Component
- * 
+ *
  * The styless unordered list component renders a ul element.
- * 
+ *
  * Usage:
  * <OrderedList>
  *   <ListItem>one</ListItem>
@@ -18,27 +18,19 @@ interface UnorderedListProps extends AttributeType<HTMLUListElement> {}
  * </OrderedList>
  */
 const UnorderedList: React.FC<UnorderedListProps> = ({
-    children,
-    className,
-    ...props
+  children,
+  className,
+  ...props
 }) => {
-    return <ul
-        className={
-            classNames(
-                'unordered-list',
-                className
-            )
-        }
-        {...props}
-    >
-        {children}
-    </ul>;
+  return (
+    <ul className={classNames('unordered-list', className)} {...props}>
+      {children}
+    </ul>
+  );
 };
 
 UnorderedList.displayName = 'UnorderedList';
 
-export type {
-    UnorderedListProps
-};
+export type { UnorderedListProps };
 
 export default UnorderedList;

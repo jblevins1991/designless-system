@@ -1,17 +1,15 @@
 /**
  * @jest-environment jsdom
  */
- import * as React from 'react';
- import { render, screen } from '@testing-library/react';
- 
- import IconButton from './IconButton';
+import * as React from 'react';
+import { render, screen } from '@testing-library/react';
 
- describe('Code Component', () => {
-    it('should render', async () => {
-        render(<IconButton icon={null}>
-            test
-        </IconButton>);
+import IconButton from './IconButton';
 
-        expect(screen.getByRole('button')).toBeInTheDocument();
-    });
- });
+describe('Code Component', () => {
+  it('should render', async () => {
+    render(<IconButton icon={null}>test</IconButton>);
+
+    expect(screen.getByRole('button')).toBeInTheDocument();
+  });
+});

@@ -1,23 +1,20 @@
 /**
  * @jest-environment jsdom
  */
- import * as React from 'react';
- import { render, screen } from '@testing-library/react';
- 
- import {
-    ListItem,
-    UnorderedList
- } from '..';
+import * as React from 'react';
+import { render, screen } from '@testing-library/react';
 
- describe('UnorderedList Component', () => {
-    it('should render', async () => {
-        render(
-            <UnorderedList>
-                <ListItem>One</ListItem>
-            </UnorderedList>
-        );
+import { ListItem, UnorderedList } from '..';
 
-        expect(screen.getByRole('list')).toBeInTheDocument();
-        expect(screen.getByRole('listitem')).toBeInTheDocument();
-    });
- });
+describe('UnorderedList Component', () => {
+  it('should render', async () => {
+    render(
+      <UnorderedList>
+        <ListItem>One</ListItem>
+      </UnorderedList>
+    );
+
+    expect(screen.getByRole('list')).toBeInTheDocument();
+    expect(screen.getByRole('listitem')).toBeInTheDocument();
+  });
+});

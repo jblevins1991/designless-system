@@ -34,13 +34,12 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
             {
                 crumbs?.map((crumb: Crumb, index: number) => {
                     return <ListItem key={crumb.label}>
-                        {
-                            index === crumbs.length - 1
-                                ? crumb.label
-                                : <Link href={crumb.url}>
-                                    {crumb.label}
-                                </Link>
-                        }
+                        <Link
+                            aria-current={index === crumbs.length - 1}
+                            href={crumb.url}
+                        >
+                            {crumb.label}
+                        </Link>
                     </ListItem>;
                 })
             }

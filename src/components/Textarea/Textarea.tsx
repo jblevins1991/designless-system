@@ -7,6 +7,7 @@ import {
 } from '..';
 
 import {
+    useControlled,
     useCreateBlurHandler,
     useCreateChangeHandler,
     useCreateClickHandler,
@@ -48,6 +49,7 @@ const Textarea = React.forwardRef<
     TextareaProps
 >(({
     className,
+    defaultValue,
     disabled = false,
     error,
     hint,
@@ -57,37 +59,31 @@ const Textarea = React.forwardRef<
     onChange,
     onClick,
     onFocus,
+    value: valueProp,
     ...props
 }, ref) => {
     const id = React.useId();
 
-    const handleBlur = useCreateBlurHandler(
-        (event: React.FocusEvent<HTMLTextAreaElement>) => {
-            onBlur?.(event);
-        },
-        disabled
-    );
+    const [value, setValueIfUndefined] = useControlled({
+        controlled: valueProp,
+        default: defaultValue,
+        name: 'Textarea'
+    })
+    
+    const handleBlur = useCreateBlurHandler<HTMLTextAreaElement>(disabled, onBlur);
 
     const handleChange = useCreateChangeHandler(
+        disabled,
         (event: React.ChangeEvent<HTMLTextAreaElement>) => {
             onChange?.(event);
-        },
-        disabled
+
+            setValueIfUndefined(event.currentTarget.value);
+        }
     );
 
-    const handleClick = useCreateClickHandler(
-        (event: React.MouseEvent<HTMLTextAreaElement>) => {
-            onClick?.(event);
-        },
-        disabled
-    );
-
-    const handleFocus = useCreateFocusHandler(
-        (event: React.FocusEvent<HTMLTextAreaElement>) => {
-            onFocus?.(event);
-        },
-        disabled
-    );
+    const handleClick = useCreateClickHandler<HTMLTextAreaElement>(disabled, onClick);
+    
+    const handleFocus = useCreateFocusHandler<HTMLTextAreaElement>(disabled, onFocus);
 
     return <>
         <Label htmlFor={`${id}-textarea`}>

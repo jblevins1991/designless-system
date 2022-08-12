@@ -37,6 +37,7 @@ interface LinkProps extends AttributeType<HTMLAnchorElement> {
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(({
     children,
     className,
+    disabled = false,
     href,
     onBlur,
     onClick,
@@ -52,17 +53,9 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(({
         }
     }
 
-    const handleBlur = useCreateBlurHandler((event: React.FocusEvent<HTMLAnchorElement>) => {
-        onBlur?.(event);
-    }, false);
-    
-    const handleClick = useCreateClickHandler((event: React.MouseEvent<HTMLAnchorElement>) => {
-        onClick?.(event);
-    }, false);
-    
-    const handleFocus = useCreateFocusHandler((event: React.FocusEvent<HTMLAnchorElement>) => {
-        onFocus?.(event);
-    }, false);
+    const handleBlur = useCreateBlurHandler<HTMLAnchorElement>(disabled, onBlur);
+    const handleClick = useCreateClickHandler<HTMLAnchorElement>(disabled, onClick);
+    const handleFocus = useCreateFocusHandler<HTMLAnchorElement>(disabled, onFocus);
 
     return <a
         {...props}

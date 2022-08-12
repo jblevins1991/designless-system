@@ -35,6 +35,7 @@ const Typography: React.FC<TypographyProps> = ({
     return React.createElement(variant, {
         ...props,
         className: classNames('typography', variant, className),
+        role: variant === 'p' ? 'paragraph': null,
     }, children);
 };
 

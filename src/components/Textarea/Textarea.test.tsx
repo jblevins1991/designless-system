@@ -15,6 +15,10 @@
  }
 
  describe('Textarea Component', () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+    
     it('should render', async () => {
         render(<Textarea label='Test' name='test' />);
 
@@ -127,7 +131,7 @@
         expect(spy).toHaveBeenCalledTimes(1);
     });
 
-    it.skip('should not fire the `onBlur` event handler when disabled', async () => {
+    it('should not fire the `onBlur` event handler when disabled', async () => {
         const user = userEvent.setup();
         const spy = jest.spyOn(eventHandlers, 'onBlur');
 
@@ -144,7 +148,7 @@
         expect(spy).toHaveBeenCalledTimes(0);
     });
 
-    it.skip('should not fire the `onClick` event handler when disabled', async () => {
+    it('should not fire the `onClick` event handler when disabled', async () => {
         const user = userEvent.setup();
         const spy = jest.spyOn(eventHandlers, 'onClick');
 
@@ -160,7 +164,7 @@
         expect(spy).toHaveBeenCalledTimes(0);
     });
 
-    it.skip('should not fire the `onChange` event handler when disabled', async () => {
+    it('should not fire the `onChange` event handler when disabled', async () => {
         const user = userEvent.setup();
         const spy = jest.spyOn(eventHandlers, 'onChange');
 
@@ -181,7 +185,7 @@
         expect(spy).toHaveBeenCalledTimes(0);
     });
 
-    it.skip('should not fire the `onFocus` event handler when disabled', async () => {
+    it('should not fire the `onFocus` event handler when disabled', async () => {
         const user = userEvent.setup();
         const spy = jest.spyOn(eventHandlers, 'onFocus');
 

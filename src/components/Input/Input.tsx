@@ -58,28 +58,19 @@ const Input = React.forwardRef<
         name: 'Input'
     });
 
-    const handleBlur = useCreateBlurHandler(
-        (event: React.FocusEvent<HTMLInputElement>) => {
-            onBlur?.(event);
-        },
-        disabled
-    );
 
-    const handleChange = useCreateChangeHandler(
+    const handleBlur = useCreateBlurHandler<HTMLInputElement>(disabled, onBlur);
+
+    const handleChange = useCreateChangeHandler<HTMLInputElement>(
+        disabled,
         (event: React.ChangeEvent<HTMLInputElement>) => {
             onChange?.(event);
 
             setValueIfUndefined(event.currentTarget.value);
-        },
-        disabled
+        }
     );
-
-    const handleFocus = useCreateFocusHandler(
-        (event: React.FocusEvent<HTMLInputElement>) => {
-            onFocus?.(event);
-        },
-        disabled
-    );
+    
+    const handleFocus = useCreateFocusHandler<HTMLInputElement>(disabled, onFocus);
 
     return <>
         <label htmlFor={`${id}-input`}>

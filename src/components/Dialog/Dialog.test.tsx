@@ -26,5 +26,5 @@ import Button from '../Button/Button';
         // expect(screen.getByRole('dialog').classList).toContain('hidden');
     });
 
-    // @todo: add more tests
+    // @todo: add controlled test for dialog
 });

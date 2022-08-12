@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import * as React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Button from './Button';
@@ -11,14 +11,16 @@ const eventHandlers = {
     // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
     onBlur: (event: React.FocusEvent<HTMLButtonElement>) => {},
     // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-    onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
-        console.log('test click');
-    },
+    onClick: (event: React.MouseEvent<HTMLButtonElement>) => {},
     // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
     onFocus: (event: React.FocusEvent<HTMLButtonElement>) => {},
 };
 
 describe('Button Component', () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+    
     it('should render', () => {
         render(<Button>Test</Button>);
 
@@ -133,8 +135,7 @@ describe('Button Component', () => {
         expect(eventSpy).toHaveBeenCalledTimes(1);
     });
 
-    // @todo: why is user.tab() and user.keyboard({enter}) behaving like shit?
-    it.skip('should fire the `onClick` handler when the user presses the enter button', async () => {
+    it('should fire the `onClick` handler when the user presses the enter button', async () => {
         const user = userEvent.setup();
         const eventSpy = jest.spyOn(eventHandlers, 'onClick');
 
@@ -147,7 +148,7 @@ describe('Button Component', () => {
         await user.tab();
         await user.keyboard('{Enter}');
 
-        expect(eventSpy).toHaveBeenCalledTimes(2);
+        expect(eventSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should not fire the `onClick` handler when button is disabled', async () => {
@@ -156,12 +157,45 @@ describe('Button Component', () => {
 
         render(<Button
             onClick={eventHandlers.onClick}
-            disabled
+            disabled={true}
         >
             Test
         </Button>);
 
         await user.click(screen.getByRole('button'));
+
+        expect(eventSpy).toHaveBeenCalledTimes(0);
+    });
+
+    it('should not fire the `onFocus` handler when button is disabled', async () => {
+        const user = userEvent.setup();
+        const eventSpy = jest.spyOn(eventHandlers, 'onFocus');
+
+        render(<Button
+            onFocus={eventHandlers.onFocus}
+            disabled={true}
+        >
+            Test
+        </Button>);
+
+        await user.tab();
+
+        expect(eventSpy).toHaveBeenCalledTimes(0);
+    });
+
+    it('should not fire the `onBlur` handler when button is disabled', async () => {
+        const user = userEvent.setup();
+        const eventSpy = jest.spyOn(eventHandlers, 'onBlur');
+
+        render(<Button
+            onBlur={eventHandlers.onBlur}
+            disabled
+        >
+            Test
+        </Button>);
+
+        await user.tab();
+        await user.tab();
 
         expect(eventSpy).toHaveBeenCalledTimes(0);
     });

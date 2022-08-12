@@ -25,6 +25,20 @@ interface CodeProps {
     language?: string;
 }
 
+/**
+ * Styless Code Component
+ * 
+ * The styless code component renders a span that contains code within it 
+ * and a button for copying the code contained within that span.
+ * 
+ * Usage:
+ * <Code
+ *   copyIcon={CopyIcon}
+ *   id='my-code'
+ * >
+ *   {codeString}
+ * </Code>
+ */
 const Code: React.FC<CodeProps> = ({
     children,
     className,
@@ -32,13 +46,17 @@ const Code: React.FC<CodeProps> = ({
     id,
     language
 }) => {
-    const codeRef = React.useRef(null);
+    const codeRef = React.useRef<HTMLSpanElement>(null);
     const window = getWindow();
 
     const handleCopyClick = () => {
-        const code = codeRef.current.innerHTML;
+        const hasRef = !!codeRef.current
+
+        if (hasRef && !!window) {
+            const code = codeRef.current.innerHTML;
         
-        window.navigator.clipboard.writeText(code);
+            window.navigator.clipboard.writeText(code);
+        }
     };
 
     return <div
@@ -65,13 +83,13 @@ const Code: React.FC<CodeProps> = ({
                 {copyIcon}
             </button>
         </div>
-        <code
+        <span
             className='code-content'
             id={`${id}-code-content`}
             ref={codeRef}
         >
             {children}
-        </code>
+        </span>
     </div>
 };
 

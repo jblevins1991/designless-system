@@ -68,19 +68,16 @@ const Accordion = React.forwardRef<
         onChange?.(open || false);
     }, [open]);
 
-    const handleBlur = useCreateBlurHandler((event: React.FocusEvent<HTMLButtonElement>) => {
-        onBlur?.(event);
-    }, disabled);
-    
-    const handleClick = useCreateClickHandler((event: React.MouseEvent<HTMLButtonElement>) => {
-        setOpenIfUncontrolled(!open);
+    const handleBlur = useCreateBlurHandler<HTMLButtonElement>(disabled, onBlur);
+    const handleClick = useCreateClickHandler<HTMLButtonElement>(
+        disabled,
+        (event: React.MouseEvent<HTMLButtonElement>) => {
+            onClick?.(event);
 
-        onClick?.(event);
-    }, disabled);
-    
-    const handleFocus = useCreateFocusHandler((event: React.FocusEvent<HTMLButtonElement>) => {
-        onFocus?.(event);
-    }, disabled);
+            setOpenIfUncontrolled(!open);
+        }
+    );
+    const handleFocus = useCreateFocusHandler<HTMLButtonElement>(disabled, onFocus);
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
         if (disabled) return;

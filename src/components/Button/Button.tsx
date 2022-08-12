@@ -7,7 +7,7 @@ import {
     useCreateFocusHandler
 } from '../../hooks';
 
-import { color, size } from '../../types/commonProps';
+import { Color, Size } from '../../types/commonProps';
 import { AttributeType } from '../../types/AttributeType';
 
 type ButtonOmitProps = 'size';
@@ -18,13 +18,7 @@ interface ButtonProps extends Omit<AttributeType<HTMLButtonElement>, ButtonOmitP
      * 
      * Default value: 'primary'
      */
-    color?: color | 'success' | 'error';
-    /**
-     * Makes the button non-interactive.
-     * 
-     * Default value: false
-     */
-    disabled?: boolean;
+    color?: Color | 'success' | 'error';
     /**
      * Makes the button take 100% of the parent's width.
      * 
@@ -36,7 +30,7 @@ interface ButtonProps extends Omit<AttributeType<HTMLButtonElement>, ButtonOmitP
      * 
      * Default value: 'medium'
      */
-    size?: size;
+    size?: Size;
     /**
      * The behavior of the button when it is clicked in a form.
      * 
@@ -79,17 +73,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     variant = 'filled',
     ...props
 }, ref) => {
-    const handleBlur = useCreateBlurHandler<HTMLButtonElement>((event: React.FocusEvent<HTMLButtonElement>) => {
-        onBlur?.(event);
-    }, disabled);
-    
-    const handleClick = useCreateClickHandler<HTMLButtonElement>((event: React.MouseEvent<HTMLButtonElement>) => {
-        onClick?.(event);
-    }, disabled);
-    
-    const handleFocus = useCreateFocusHandler<HTMLButtonElement>((event: React.FocusEvent<HTMLButtonElement>) => {
-        onFocus?.(event);
-    }, disabled);
+    const handleBlur = useCreateBlurHandler<HTMLButtonElement>(disabled, onBlur);
+    const handleClick = useCreateClickHandler<HTMLButtonElement>(disabled, onClick);
+    const handleFocus = useCreateFocusHandler<HTMLButtonElement>(disabled, onFocus);
 
     return <button
         {...props}

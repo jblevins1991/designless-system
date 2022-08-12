@@ -9,6 +9,10 @@
 import Accordion from '../Accordion/Accordion';
 
  describe('AccordionGroup Component', () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     it('should render', async () => {
         render(<AccordionGroup>
             <Accordion title='Title'>

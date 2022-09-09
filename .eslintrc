@@ -1,6 +1,26 @@
 {
     "root": true,
     "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        },
+        "project": [
+            "./tsconfig.json"
+        ]
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "settings": {
+        "react": {
+            "pragma": "React",
+            "version": "18.2.0"
+        }
+    },
     "plugins": [
         "@typescript-eslint",
         "jsx-a11y"

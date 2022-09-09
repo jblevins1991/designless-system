@@ -1,73 +1,131 @@
 import * as React from 'react';
-import classNames from "classnames";
+import classNames from 'classnames';
 
-export interface AccordionProps {
-    children: React.ReactNode;
-    className?: string;
-    closedIcon: React.ReactNode;
-    id?: string;
-    name: string;
-    openIcon: React.ReactNode;
-    tabIndex?: number;
-    title: string;
+import {
+  useControlled,
+  useCreateBlurHandler,
+  useCreateClickHandler,
+  useCreateFocusHandler
+} from '../../hooks';
+
+interface AccordionProps {
+  children: React.ReactNode;
+  className?: string;
+  disabled?: boolean;
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onChange?: (open: boolean) => void;
+  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
+  open?: boolean;
+  title: React.ReactNode;
 }
 
-const Accordion = React.forwardRef<HTMLButtonElement, AccordionProps>(({
-    children,
-    className,
-    closedIcon,
-    id,
-    name,
-    openIcon,
-    tabIndex = 0,
-    title,
-}, ref) => {
-    const [isExpanded, setIsExpanded] = React.useState(false);
+type AccordionHandle = {
+  button: React.MutableRefObject<HTMLButtonElement>['current'] | null;
+  close: () => void;
+  open: () => void;
+};
 
-    const handleAccordionHeaderClick = () => {
-        setIsExpanded((prevState: boolean) => !prevState);
+const Accordion = React.forwardRef<AccordionHandle, AccordionProps>(
+  (
+    {
+      children,
+      className,
+      disabled = false,
+      onBlur,
+      onClick,
+      onChange,
+      onFocus,
+      onKeyDown,
+      open: openProp,
+      title
+    },
+    ref
+  ) => {
+    const id = React.useId();
+    const [open, setOpenIfUncontrolled] = useControlled({
+      controlled: openProp,
+      default: false,
+      name: 'Accordion'
+    });
+    const button = React.useRef<HTMLButtonElement>(null);
+
+    React.useImperativeHandle(
+      ref,
+      () => {
+        return {
+          button: button.current,
+          close: () => {
+            setOpenIfUncontrolled(false);
+            onChange?.(false);
+          },
+          open: () => {
+            setOpenIfUncontrolled(true);
+            onChange?.(false);
+          }
+        };
+      },
+      [button]
+    );
+
+    React.useEffect(() => {
+      onChange?.(open || false);
+    }, [open]);
+
+    const handleBlur = useCreateBlurHandler<HTMLButtonElement>(
+      disabled,
+      onBlur
+    );
+    const handleClick = useCreateClickHandler<HTMLButtonElement>(
+      disabled,
+      (event: React.MouseEvent<HTMLButtonElement>) => {
+        onClick?.(event);
+
+        setOpenIfUncontrolled(!open);
+      }
+    );
+    const handleFocus = useCreateFocusHandler<HTMLButtonElement>(
+      disabled,
+      onFocus
+    );
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (disabled) return;
+
+      onKeyDown?.(event);
     };
 
-    return <>
+    return (
+      <>
         <button
-            aria-owns={`${name}-accordion-panel`}
-            aria-expanded={isExpanded}
-            className={
-                classNames(
-                    'accordion-header',
-                    className
-                )
-            }
-            id={`${id}-accordion-header`}
-            name={name}
-            onClick={handleAccordionHeaderClick}
-            tabIndex={tabIndex}
-            role={''}
-            ref={ref}
+          aria-owns={`${id}-accordion-body`}
+          className={classNames('accordion-header', className)}
+          onBlur={handleBlur}
+          onClick={handleClick}
+          onFocus={handleFocus}
+          onKeyDown={handleKeyDown}
+          ref={button}
         >
-            {title}
-
-            {
-                isExpanded
-                    ? closedIcon
-                    : openIcon
-            }
+          {title}
         </button>
 
         <div
-            className={
-                classNames(
-                    'accordion-panel'
-                )
-            }
-            id={`${id}-accordion-panel`}
-            role={''}
+          className={classNames(
+            'accordion-content',
+            open ? 'visible' : 'hidden'
+          )}
+          id={`${id}-accordion-body`}
         >
-            {children}
+          {children}
         </div>
-    </>
-});
+      </>
+    );
+  }
+);
 
 Accordion.displayName = 'Accordion';
+
+export type { AccordionProps, AccordionHandle };
 
 export default Accordion;

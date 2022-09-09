@@ -1,0 +1,31 @@
+name: Storybook Github Pages Deployment
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - '.github/workflows/storybook.yml'
+jobs:
+  github-pages-deployment:
+    runs-on: ubuntu-latest
+    name: Deploy Storybook
+    steps:
+      - name: GitHub Checkout
+        uses: actions/checkout@v3
+
+      - name: Node.js Configuration
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install Yarn & Dependencies
+        run: npm install --ci
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Deploy Storybook to GitHub Pages
+        run: npm run deploy-storybook
+        env:
+          GH_TOKEN: jblevins1991:${{ secrets.GITHUB_TOKEN }}

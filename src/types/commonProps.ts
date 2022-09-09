@@ -1,9 +1,9 @@
 /**
- * 
+ *
  */
-export type color = 'primary' | 'secondary' | 'tertiary';
+export type Color = 'primary' | 'secondary' | 'tertiary';
 
 /**
- * 
+ *
  */
-export type size = 'large' | 'medium' | 'small';
+export type Size = 'large' | 'medium' | 'small';

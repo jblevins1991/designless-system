@@ -1,0 +1,42 @@
+name: GH Packages Deployment
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - '.github/workflows/package.yml'
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    name: Publish Package
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: GitHub Checkout
+        uses: actions/checkout@v3
+
+      - name: Node.js Configuration
+        uses: actions/setup-node@v3
+        with:
+          always-auth: true
+          node-version: 16.x
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Install Yarn & Dependencies
+        run: |
+          npm install --ci
+
+      - name: Run Build System
+        run: npm run build
+
+      - name: Automated Version Bump
+        uses: phips28/gh-action-bump-version@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to GH Packages
+        run: npm publish:gh
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
